@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "experimentalDecorators": true,
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    "baseUrl": "./src",
+    "paths": {
+      "@store/*": ["store/*"],
+      "@common/*": ["common/*"],
+      "@components/*": ["components/*"],
+      "@views/*": ["views/*"],
+      "@static/*": ["static/*"],
+      "@utils/*": ["utils/*"],
+    }
+  },
+  "include": ["./src"]
+}

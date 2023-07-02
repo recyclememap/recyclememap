@@ -1,0 +1,132 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  // Сначала добавляются плагины
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "import"
+  ],
+  // А потом из плагинов берутся конфигурационные файлы или настраиваются ниже в settings
+  // Сами по себе плагины не настраивают eslint
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended",
+    "plugin:react/jsx-runtime",
+    "prettier"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [
+        ".ts",
+        ".tsx",
+        ".jpg"
+      ]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    },
+    "import/extensions": [
+      ".ts",
+      ".tsx",
+      ".jpg"
+    ]
+  },
+  "rules": {
+    // Выключаем необходимость прописывать React в каждом файле, т.к он уже есть скоупах
+    "react/react-in-jsx-scope": "off",
+    // Проверяем на упущенные зависимости в хуках, например в useEffect
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    // Проверяем на неиспользуемые переменные
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "args": "none",
+        "varsIgnorePattern": "_"
+      }
+    ],
+    // Отключаем необходимость постоянно явно указывать возвращаемый тип функции (поиграйся с вариациями)
+    "@typescript-eslint/explicit-function-return-type": "off",
+    // Устанавливаем максимальную длину коммента
+    "max-len": [
+      "warn",
+      120,
+      2,
+      {
+        "ignoreComments": true
+      }
+    ],
+    // Подсвечиваем ошибки из prettier
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    // Порядок импорта
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "never",
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    // Т.к. дефолтный экспорт - один на модуль, то это правило предупреждает нас,
+    // Если мы пытаемся экспортировать из дефолтного экспорта еще и именованный экспорт.
+    // Отключаем его, т.к. тв реакте с этим проблемы.
+    "import/no-named-as-default": "off",
+    "import/no-named-as-default-member": "off",
+    // Запрещаем использовать все до определения
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      {
+        "ignoreTypeReferences": false
+      }
+    ],
+    // TODO: add later (https://eslint.org/docs/rules/padding-line-between-statements)
+    // Настройки для TS
+    "@typescript-eslint/no-implicit-any": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-non-null-asserted-optional-chain": "off",
+    "react/prop-types": "off",
+    "react/display-name": "off"
+  }
+}
