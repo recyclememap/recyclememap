@@ -15,7 +15,6 @@ export const Map = () => {
       minZoom={MAP_ZOOM}
       className={mapStyle}
       zoomControl={false}
-      data-testid="map--zoom-control"
     >
       <TileLayer
         maxZoom={19}
