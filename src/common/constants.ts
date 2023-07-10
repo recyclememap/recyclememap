@@ -6,4 +6,6 @@ export const ASHDOD_MAX_BOUNDS = [
   [31.758, 34.72]
 ] as LatLngBoundsExpression;
 
-export const MAP_ZOOM = 13; // Scale 1:13
+export const INITIAL_MAP_ZOOM = 13; // Scale 1:13
+export const MIN_MAP_ZOOM = 13; // Scale 1:13
+export const MAX_MAP_ZOOM = 19; // Scale 1:19
