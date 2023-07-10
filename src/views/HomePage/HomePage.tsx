@@ -1,5 +1,11 @@
+import { Map } from '@components/index';
+
 const HomePage = () => {
-  return <div>Hello recycle map</div>;
+  return (
+    <>
+      <Map />
+    </>
+  );
 };
 
 export default HomePage;
