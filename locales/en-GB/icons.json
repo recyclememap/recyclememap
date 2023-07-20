@@ -1,0 +1,29 @@
+{
+    "close": {
+        "title": "Close the modal"
+    },
+    "paper": {
+        "title": "Paper"
+    },
+    "carton": {
+        "title": "Carton"
+    },
+    "glass": {
+        "title": "Glass"
+    },
+    "plastic": {
+        "title": "Plastic"
+    },
+    "packing": {
+        "title": "Packing"
+    },
+    "clothes": {
+        "title": "Clothes"
+    },
+    "batteries": {
+        "title": "Batteries"
+    },
+    "mixed": {
+        "title": "Mixed waste"
+    }
+}

@@ -3,7 +3,11 @@
     "target": "ESNext",
     "experimentalDecorators": true,
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     // Sets to true for tests to translate non-ts ES6 modules in node_module by ts-jests 
     "allowJs": true,
     "skipLibCheck": false,
@@ -17,16 +21,30 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-
     "baseUrl": "./src",
     "paths": {
-      "@store/*": ["store/*"],
-      "@common/*": ["common/*"],
-      "@components/*": ["components/*"],
-      "@views/*": ["views/*"],
-      "@static/*": ["static/*"],
-      "@utils/*": ["utils/*"],
+      "@store/*": [
+        "store/*"
+      ],
+      "@common/*": [
+        "common/*"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@views/*": [
+        "views/*"
+      ],
+      "@static/*": [
+        "static/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
     }
   },
-  "include": ["./src"]
+  "include": [
+    "./src",
+    "locales/types.ts"
+  ]
 }

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { RootStore } from '@store/index';
 import './index.css';
 import App from './App';
+import '../i18n';
 
 const store = new RootStore();
 

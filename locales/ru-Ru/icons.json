@@ -1,0 +1,29 @@
+{
+    "close": {
+        "title": "Закрыть окно"
+    },
+    "paper": {
+        "title": "Бумага"
+    },
+    "carton": {
+        "title": "Картон"
+    },
+    "glass": {
+        "title": "Стекло"
+    },
+    "plastic": {
+        "title": "Пластик"
+    },
+    "packing": {
+        "title": "Упаковка"
+    },
+    "clothes": {
+        "title": "Одежда"
+    },
+    "batteries": {
+        "title": "Батарейки"
+    },
+    "mixed": {
+        "title": "Бытовые отходы"
+    }
+}
