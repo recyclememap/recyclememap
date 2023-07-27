@@ -49,3 +49,5 @@ export const flatIcons = {
     color: '#E91E63'
   }
 };
+
+export type flatIconsKeys = keyof typeof flatIcons;
