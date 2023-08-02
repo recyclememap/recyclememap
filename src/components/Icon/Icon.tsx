@@ -8,10 +8,10 @@ export type IconProps = {
 
 const sizes = {
   m: { width: '45px', padding: '15px' },
-  s: { width: '20px', padding: '10px' }
+  s: { width: '40px', padding: '8px' }
 };
 
-const Root = styled('img')(
+const IconEl = styled('img')(
   (props: { iconBgColor: string; sizeName: keyof typeof sizes }) => ({
     backgroundColor: props.iconBgColor,
     borderRadius: '50%',
@@ -26,7 +26,7 @@ export const Icon = ({ name }: IconProps) => {
   const { color, src, title } = flatIcons[name];
   return (
     <Tooltip arrow title={t(`icons.${title}`)}>
-      <Root src={src} iconBgColor={color} sizeName="s" />
+      <IconEl src={src} iconBgColor={color} sizeName="s" />
     </Tooltip>
   );
 };
