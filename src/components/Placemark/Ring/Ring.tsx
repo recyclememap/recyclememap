@@ -1,44 +1,28 @@
-import {
-  Four0,
-  Four1,
-  Four2,
-  Four3,
-  Three0,
-  Three1,
-  Three2,
-  Two0,
-  Two1,
-  One
-} from './styles';
+import { Double } from './Double';
+import { Multi } from './Multi';
+import { Quadruple } from './Quadruple';
+import { Single } from './Single';
+import { Triple } from './Triple';
 
-const fourComponents = [Four0, Four1, Four2, Four3];
-const threeComponents = [Three0, Three1, Three2];
-const twoComponents = [Two0, Two1];
+export type RingElemProps = {
+  bgColors: string[];
+};
 
-export const Ring = ({
-  index,
-  bgColor,
-  length
-}: {
-  index: number;
-  bgColor: string;
+type RingProps = RingElemProps & {
   length: number;
-}): JSX.Element => {
-  let RingEl;
+};
+
+export const Ring = ({ bgColors, length }: RingProps): JSX.Element => {
   switch (length) {
     case 1:
-      RingEl = One;
-      break;
+      return <Single bgColors={bgColors} />;
     case 2:
-      RingEl = twoComponents[index];
-      break;
+      return <Double bgColors={bgColors} />;
     case 3:
-      RingEl = threeComponents[index];
-      break;
+      return <Triple bgColors={bgColors} />;
     case 4:
+      return <Quadruple bgColors={bgColors} />;
     default:
-      RingEl = fourComponents[index];
-      break;
+      return <Multi />;
   }
-  return <RingEl bgColor={bgColor} />;
 };

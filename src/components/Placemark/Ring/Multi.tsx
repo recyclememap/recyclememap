@@ -1,11 +1,10 @@
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-const Wheel = () => css`
+const Ring = styled.div`
   --num-colors: 8;
   --color-size: calc(100% / var(--num-colors));
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   position: relative;
   border-radius: 50%;
   background: conic-gradient(
@@ -31,24 +30,8 @@ const Wheel = () => css`
     transform: translate(-50%, -50%);
     z-index: -1;
   }
-
-  :after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius: 50%;
-    background: white;
-    width: 50%;
-    height: 50%;
-    transform: translate(-50%, -50%);
-  }
 `;
 
-const Ring = styled.div`
-  ${Wheel};
-`;
-
-export const MultiColouredRing = () => {
+export const Multi = () => {
   return <Ring />;
 };
