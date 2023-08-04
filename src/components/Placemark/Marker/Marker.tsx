@@ -1,12 +1,10 @@
 import type { flatIconsKeys } from '@components/Icon/FlatIcons';
 import { flatIcons } from '@components/Icon/FlatIcons';
-import { Ring } from '../Ring';
-import { RingWrapper, Cutout } from './styles';
+import { RingWrapper, Cutout, Ring } from './styles';
 
 const allIcons = Object.entries(flatIcons);
 
 export const Marker = ({ icons }: { icons: flatIconsKeys[] }) => {
-  const iconsLength = icons.length;
   const bgColors = allIcons
     .filter((item) => {
       const [key] = item;
@@ -19,7 +17,7 @@ export const Marker = ({ icons }: { icons: flatIconsKeys[] }) => {
 
   return (
     <RingWrapper>
-      <Ring length={iconsLength} bgColors={bgColors} />
+      <Ring bgColors={bgColors} />
       <Cutout />
     </RingWrapper>
   );
