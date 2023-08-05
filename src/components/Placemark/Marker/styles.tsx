@@ -9,18 +9,19 @@ type RingProps = {
 const allIcons = Object.entries(flatIcons);
 
 const getBackground = (icons: string[]) => {
-  const gradient = allIcons
-    .filter((item) => {
-      const [key] = item;
-      return icons.includes(key as flatIconsKeys);
-    })
-    .map((item, idx, bgColors) => {
-      const [_, value] = item;
-      const colorSize = bgColors.length;
-      return `${value.color} ${idx * (100 / colorSize)}% ${
-        (idx + 1) * (100 / colorSize)
-      }%`;
-    });
+  const colorSize = icons.length;
+
+  const gradient = allIcons.reduce((acc: string[], [key, value]) => {
+    if (icons.includes(key)) {
+      const idx = acc.length;
+      acc.push(
+        `${value.color} ${idx * (100 / colorSize)}% ${
+          (idx + 1) * (100 / colorSize)
+        }%`
+      );
+    }
+    return acc;
+  }, []);
 
   return `background: conic-gradient(${gradient.join(',')});`;
 };
