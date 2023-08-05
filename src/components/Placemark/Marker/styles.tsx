@@ -9,16 +9,12 @@ type RingProps = {
 const allIcons = Object.entries(flatIcons);
 
 const getBackground = (icons: string[]) => {
-  const colorSize = icons.length;
+  const percents = 100 / icons.length;
 
   const gradient = allIcons.reduce((acc: string[], [key, value]) => {
     if (icons.includes(key)) {
       const idx = acc.length;
-      acc.push(
-        `${value.color} ${idx * (100 / colorSize)}% ${
-          (idx + 1) * (100 / colorSize)
-        }%`
-      );
+      acc.push(`${value.color} ${idx * percents}% ${(idx + 1) * percents}%`);
     }
     return acc;
   }, []);
