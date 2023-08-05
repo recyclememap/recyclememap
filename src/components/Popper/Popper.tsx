@@ -27,14 +27,14 @@ export const Popper = ({ open, street, icons, anchorEl }: PopperProps) => {
         <Fade {...TransitionProps} timeout={350}>
           <Paper
             elevation={3}
-            sx={{ borderRadius: '16px', padding: '16px', minWidth: 200 }}
+            sx={{ borderRadius: '16px', padding: '16px', minWidth: '200px' }}
           >
             <Typography variant="h5" color="text.secondary">
               {street}
             </Typography>
             <Box sx={{ paddingTop: '16px', display: 'flex', gap: '10px' }}>
-              {icons.map((name, index) => {
-                return <Icon name={name} key={`icon-${index}`} />;
+              {icons.map((name) => {
+                return <Icon name={name} key={name} />;
               })}
             </Box>
           </Paper>
