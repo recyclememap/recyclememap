@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { flatIcons } from '@components/Icon/FlatIcons';
-import type { flatIconsKeys } from '@components/Icon/FlatIcons';
+import { flatIcons } from '@components/Icon';
+import type { flatIconsKeys } from '@components/Icon';
 
 type RingProps = {
   icons: flatIconsKeys[];

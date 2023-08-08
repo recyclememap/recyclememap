@@ -1,4 +1,4 @@
-import { Map } from '@components/index';
+import { Map } from '@root/components';
 
 const HomePage = () => {
   return (

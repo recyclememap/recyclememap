@@ -1,4 +1,4 @@
-import type { flatIconsKeys } from '@components/Icon/FlatIcons';
+import type { flatIconsKeys } from '@components/Icon';
 import { RingWrapper, Cutout, Ring } from './styles';
 
 export const Marker = ({ icons }: { icons: flatIconsKeys[] }) => {

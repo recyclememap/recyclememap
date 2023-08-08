@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { useState, MouseEvent } from 'react';
-import type { flatIconsKeys } from '@components/Icon/FlatIcons';
-import { Popper } from '@components/Popper/Popper';
+import type { flatIconsKeys } from '@components/Icon';
+import { Popper } from '@components/Popper';
 import { Marker } from './Marker/Marker';
 
 type PlacemarkProps = {

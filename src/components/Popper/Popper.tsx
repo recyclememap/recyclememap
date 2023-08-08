@@ -5,8 +5,8 @@ import {
   Fade,
   Typography
 } from '@mui/material';
-import type { flatIconsKeys } from '@components/Icon/FlatIcons';
-import { Icon } from '../Icon/Icon';
+import type { flatIconsKeys } from '@components/Icon';
+import { Icon } from '@components/Icon';
 
 type PopperProps = {
   open: boolean;
