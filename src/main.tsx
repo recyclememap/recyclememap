@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { RootStore } from '@store/index';
+import { RootStore } from '@root/store';
 import './index.css';
 import App from './App';
 import '../i18n';

@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { StoreContext, RootStore } from '@store/index';
+import { StoreContext, RootStore } from '@root/store';
 import { app } from './app.css';
 
 interface IApp {

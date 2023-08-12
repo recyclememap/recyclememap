@@ -21,7 +21,8 @@ const config = {
     '^@views(.*)$': '<rootDir>/src/views$1',
     '^@static(.*)$': '<rootDir>/src/static$1',
     '^@root(.*)$': '<rootDir>/src$1',
-    '\\.(css|css.ts|css.js)$': 'identity-obj-proxy'
+    '\\.(css|css.ts|css.js)$': 'identity-obj-proxy',
+    '^.+\\.svg$': 'jest-svg-transformer'
   },
   testEnvironment: 'jest-environment-jsdom',
   setupFilesAfterEnv: ['<rootDir>/configs/tests/jest.setup.ts']
