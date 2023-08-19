@@ -23,7 +23,11 @@ export const Placemark = ({ icons, street }: PlacemarkProps) => {
   const open = Boolean(anchorEl);
 
   return (
-    <Box onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose}>
+    <Box
+      onMouseEnter={handlePopoverOpen}
+      onMouseLeave={handlePopoverClose}
+      data-testid={Placemark.name}
+    >
       <Marker icons={icons as flatIconsKeys[]} />
       <Popper open={open} anchorEl={anchorEl} icons={icons} street={street} />
     </Box>

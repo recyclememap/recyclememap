@@ -62,3 +62,7 @@ export const flatIcons = {
 };
 
 export type flatIconsKeys = keyof typeof flatIcons;
+
+export const IconNames: flatIconsKeys[] = Object.keys(
+  flatIcons
+) as flatIconsKeys[];

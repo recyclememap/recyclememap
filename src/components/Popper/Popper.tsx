@@ -22,6 +22,7 @@ export const Popper = ({ open, street, icons, anchorEl }: PopperProps) => {
       anchorEl={anchorEl}
       transition
       sx={{ zIndex: 1000 }}
+      data-testid={Popper.name}
     >
       {({ TransitionProps }) => (
         <Fade {...TransitionProps} timeout={350}>
