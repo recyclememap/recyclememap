@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { IconNames } from '@components/Icon';
 import { Placemark } from '../Placemark';
@@ -10,9 +10,7 @@ describe('Placemark logic', () => {
 
     await userEvent.hover(screen.getByTestId(Placemark.name));
 
-    await waitFor(() =>
-      expect(screen.getByRole('tooltip')).toBeInTheDocument()
-    );
+    await screen.findByRole('tooltip');
   });
 
   it('does not show Popper by default', async () => {
