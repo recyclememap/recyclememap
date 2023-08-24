@@ -25,6 +25,7 @@
       "@views/*": ["views/*"],
       "@static/*": ["static/*"],
       "@utils/*": ["utils/*"],
+      "@root/*": ["./*"]
     }
   },
   "include": ["./src"]
