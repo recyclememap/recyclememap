@@ -14,7 +14,7 @@ describe('Popper visual', () => {
       />
     );
 
-    screen.getByTestId(Popper.name);
+    screen.getByRole('tooltip');
     screen.getByText(StreetName);
     screen.getAllByRole('img');
   });

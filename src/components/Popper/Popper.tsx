@@ -17,13 +17,7 @@ type PopperProps = {
 
 export const Popper = ({ open, street, icons, anchorEl }: PopperProps) => {
   return (
-    <PopperModal
-      open={open}
-      anchorEl={anchorEl}
-      transition
-      sx={{ zIndex: 1000 }}
-      data-testid={Popper.name}
-    >
+    <PopperModal open={open} anchorEl={anchorEl} transition sx={{ zIndex: 2 }}>
       {({ TransitionProps }) => (
         <Fade {...TransitionProps} timeout={350}>
           <Paper
