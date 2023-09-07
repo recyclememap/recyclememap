@@ -10,7 +10,7 @@ describe('LoadingModal logic', () => {
     expect(screen.queryByTestId(CHILD_ELEMENT_TEST_ID)).toBeNull();
   });
 
-  it('shows child element if isLoading="false"', async () => {
+  it('shows a child element if isLoading="false"', async () => {
     render(<LoadingModal isLoading={false}>{ChildElement}</LoadingModal>);
 
     screen.getByTestId(CHILD_ELEMENT_TEST_ID);
