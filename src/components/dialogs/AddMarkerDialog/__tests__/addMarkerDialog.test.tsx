@@ -52,7 +52,7 @@ describe('AddMarkerDialog logic', () => {
     expect(store.markerView.isNewMarkerActive).toBe(true);
   });
 
-  it('closes dialog on cancel button click', async () => {
+  it('closes the dialog on cancel button click', async () => {
     store.mapDomain.setCurrentPosition(LAT_LNG_MOCK);
 
     const onCloseSpy = jest.fn();
