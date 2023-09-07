@@ -27,7 +27,7 @@ describe('MarkerLayout visual', () => {
     screen.getByText(DialogElements.Title);
   });
 
-  it('renders correct mobile marker dialog and mobile marker', async () => {
+  it('renders the correct mobile marker dialog and mobile marker', async () => {
     store.markerView.setIsNewMobileMarkerActive(true);
 
     renderWithStore(store, <MarkerLayout />);
