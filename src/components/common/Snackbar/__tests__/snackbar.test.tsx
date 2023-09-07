@@ -20,7 +20,7 @@ describe('LoadingContainer logic', () => {
     screen.getByRole('presentation');
   });
 
-  it('closes snackbar and cleans notification from store if close icon is clicked', async () => {
+  it('closes the snackbar and cleans the notification from the store if the close icon is clicked', async () => {
     store.notification.setCurrentNotification(MOCK_SUCCESS_NOTIFICATION);
 
     renderWithStore(store, <Snackbar />, false);
