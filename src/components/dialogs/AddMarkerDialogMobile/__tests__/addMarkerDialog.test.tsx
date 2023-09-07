@@ -16,7 +16,7 @@ describe('AddMarkerDialogMobile logic', () => {
     apiMock = (global as any).apiMock;
   });
 
-  it('creates new marker and closes dialog on add button click', async () => {
+  it('creates a new marker and closes the dialog on add button click', async () => {
     store.mapDomain.setCurrentPosition(LAT_LNG_MOCK);
 
     const addNewMarkerSpy = jest.spyOn(store.mapDomain, 'addNewMarker');
