@@ -19,7 +19,7 @@ describe('MarkerLayout visual', () => {
     screen.getByTitle(LayoutElements.FabTitle);
   });
 
-  it('renders correct marker dialog', () => {
+  it('renders the correct marker dialog', () => {
     store.markerView.setIsMarkerDialogOpen(true);
 
     renderWithStore(store, <MarkerLayout />);
