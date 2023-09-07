@@ -32,7 +32,7 @@ describe('MarkerLayout logic', () => {
     await waitFor(() => expect(store.markerView.isNewMarkerActive).toBe(true));
   });
 
-  it('shows new mobile marker icon and opens mobile dialog on Fab click', async () => {
+  it('shows a new mobile marker icon and opens a mobile dialog on Fab click', async () => {
     fireResize(MockBreakpoints.mobile);
 
     renderWithStore(store, <MarkerLayout />);
