@@ -51,7 +51,7 @@ describe('AddMarkerDialogMobile logic', () => {
     await waitFor(() => expect(onCloseSpy).toBeCalledTimes(1));
   });
 
-  it('shows error snackbar if adding new marker is failed', async () => {
+  it('shows an error snackbar if adding a new marker is failed', async () => {
     store.mapDomain.setCurrentPosition(LAT_LNG_MOCK);
 
     const addNewMarkerSpy = jest.spyOn(store.mapDomain, 'addNewMarker');
