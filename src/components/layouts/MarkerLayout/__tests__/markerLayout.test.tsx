@@ -22,7 +22,7 @@ describe('MarkerLayout logic', () => {
     store = createStore();
   });
 
-  it('sets new marker active on Fab click', async () => {
+  it('sets a new marker active on Fab click', async () => {
     fireResize(MockBreakpoints.desktop);
 
     renderWithStore(store, <MarkerLayout />);
