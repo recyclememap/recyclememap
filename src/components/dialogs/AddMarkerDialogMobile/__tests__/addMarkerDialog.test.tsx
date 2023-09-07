@@ -39,7 +39,7 @@ describe('AddMarkerDialogMobile logic', () => {
     await screen.findByText(DialogElements.SuccessMessage);
   });
 
-  it('closes dialog on cancel button click', async () => {
+  it('closes the dialog on cancel button click', async () => {
     store.mapDomain.setCurrentPosition(LAT_LNG_MOCK);
 
     const onCloseSpy = jest.fn();
