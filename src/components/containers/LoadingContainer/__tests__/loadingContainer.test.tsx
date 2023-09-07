@@ -3,7 +3,7 @@ import { LoadingContainer } from '../LoadingContainer';
 import { ChildElement, CHILD_ELEMENT_TEST_ID } from './test-data';
 
 describe('LoadingContainer logic', () => {
-  it('shows loader if isLoading="true"', async () => {
+  it('shows a loader if isLoading="true"', async () => {
     render(
       <LoadingContainer isLoading={true}>{ChildElement}</LoadingContainer>
     );
