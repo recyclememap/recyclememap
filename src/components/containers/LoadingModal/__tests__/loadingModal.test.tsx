@@ -3,7 +3,7 @@ import { LoadingModal } from '../LoadingModal';
 import { ChildElement, CHILD_ELEMENT_TEST_ID } from './test-data';
 
 describe('LoadingModal logic', () => {
-  it('shows loader if isLoading="true"', async () => {
+  it('shows a loader if isLoading="true"', async () => {
     render(<LoadingModal isLoading={true}>{ChildElement}</LoadingModal>);
 
     screen.getByRole('progressbar');
