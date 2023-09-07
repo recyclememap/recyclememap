@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RootStore } from '@root/store';
-import './index.css';
 import App from './App';
-import '../i18n';
+import '../locales/i18n';
 
 const store = new RootStore();
 

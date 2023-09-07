@@ -2,7 +2,12 @@ import nock from 'nock';
 import '@testing-library/jest-dom';
 
 global.beforeEach(() => {
-  const apiMock = nock('http://127.0.0.1:3100');
+  const apiMock = nock('http://127.0.0.1:3100/api');
+
+  apiMock.defaultReplyHeaders({
+    'access-control-allow-origin': '*',
+    'access-control-allow-credentials': 'true'
+  });
 
   (global as any).apiMock = apiMock;
 });

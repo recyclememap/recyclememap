@@ -9,3 +9,12 @@ export const ASHDOD_MAX_BOUNDS = [
 export const INITIAL_MAP_ZOOM = 13; // Scale 1:13
 export const MIN_MAP_ZOOM = 13; // Scale 1:13
 export const MAX_MAP_ZOOM = 19; // Scale 1:19
+
+export const MOBILE_DIALOG_HEIGHT = 180;
+
+export const StatusCodes = {
+  Ok: 200,
+  Created: 201,
+  BadRequest: 400,
+  InternalServerError: 500
+};

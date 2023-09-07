@@ -19,12 +19,12 @@
     "jsx": "react-jsx",
     "baseUrl": "./src",
     "paths": {
-      "@store/*": ["store/*"],
       "@common/*": ["common/*"],
       "@components/*": ["components/*"],
       "@views/*": ["views/*"],
       "@static/*": ["static/*"],
       "@utils/*": ["utils/*"],
+      "@api/*": ["api/*"],
       "@root/*": ["./*"]
     }
   },
