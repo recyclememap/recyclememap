@@ -33,7 +33,7 @@ describe('LoadingContainer logic', () => {
     expect(store.notification.currentNotification).toBeNull();
   });
 
-  it('does not close snackbar on click outside snackbar', () => {
+  it('does not close the snackbar on click outside the snackbar', () => {
     store.notification.setCurrentNotification(MOCK_SUCCESS_NOTIFICATION);
 
     renderWithStore(store, <Snackbar />, false);

@@ -1,5 +1,5 @@
 {
-    "getAddressErrorMessage": "Не смогли получить адрес",
-    "addNewMarkerErrorMessage": "Не смогли добавить новый маркер",
+    "getAddressErrorMessage": "Не удалось получить адрес",
+    "addNewMarkerErrorMessage": "Не удалось добавить новый маркер",
     "addNewMarkerSuccessMessage": "Новый маркер отправлен модераторам"
 }
