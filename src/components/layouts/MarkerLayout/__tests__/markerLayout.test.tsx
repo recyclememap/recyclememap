@@ -43,7 +43,7 @@ describe('MarkerLayout logic', () => {
     screen.getByTestId(MOBILE_MARKER_TEST_ID);
   });
 
-  it('resets data and closes dialog on dialog cancel button click', async () => {
+  it('resets data and closes the dialog on dialog cancel button click', async () => {
     fireResize(MockBreakpoints.desktop);
     store.markerView.setIsMarkerDialogOpen(true);
     store.mapDomain.setCurrentPosition(LAT_LNG_MOCK);
