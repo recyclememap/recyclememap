@@ -12,7 +12,7 @@ describe('LoadingContainer logic', () => {
     store = createStore();
   });
 
-  it('opens snackbar if there is notification in store', () => {
+  it('opens a snackbar if there is a notification in the store', () => {
     store.notification.setCurrentNotification(MOCK_SUCCESS_NOTIFICATION);
 
     renderWithStore(store, <Snackbar />, false);
