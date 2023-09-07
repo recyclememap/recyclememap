@@ -60,7 +60,7 @@ describe('MarkerLayout logic', () => {
     expect(store.mapDomain.currentPosition).toBeNull();
   });
 
-  it('resets data and closes dialog on mobile dialog cancel button click', async () => {
+  it('resets data and closes the dialog on mobile dialog cancel button click', async () => {
     fireResize(MockBreakpoints.mobile);
     store.mapDomain.setCurrentPosition(LAT_LNG_MOCK);
     store.mapDomain.setCurrentAddress(ADDRESS_MOCK);
