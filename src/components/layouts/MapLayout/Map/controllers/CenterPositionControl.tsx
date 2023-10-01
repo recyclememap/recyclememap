@@ -6,7 +6,7 @@ import { useStore } from '@root/store';
 import { debounce, noop } from '@utils/helpers';
 
 export const CenterPositionControl = observer(() => {
-  const { mapDomain, markerView } = useStore();
+  const { mapDomain, markersView: markerView } = useStore();
   const map = useMap();
 
   const getAddress = useCallback(async () => {

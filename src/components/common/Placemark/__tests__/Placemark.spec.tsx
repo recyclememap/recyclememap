@@ -1,12 +1,20 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { IconNames } from '@root/components';
+import { createStore, renderWithLeaflet } from '@utils/tests/helpers';
 import { Placemark } from '../Placemark';
-import { StreetName } from './test-data';
+import { MOCK_POSITION, StreetName, PlacemarkId } from './test-data';
 
 describe('Placemark visual', () => {
   it('renders a placemark', async () => {
-    render(<Placemark icons={IconNames} street={StreetName} />);
+    renderWithLeaflet(
+      createStore(),
+      <Placemark
+        position={MOCK_POSITION}
+        icons={IconNames}
+        street={StreetName}
+      />
+    );
 
-    screen.getByTestId(Placemark.name);
+    screen.getByTestId(PlacemarkId);
   });
 });

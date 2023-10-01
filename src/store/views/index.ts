@@ -1,1 +1,1 @@
-export * from './Marker/MarkerView';
+export * from './Markers/MarkersView';

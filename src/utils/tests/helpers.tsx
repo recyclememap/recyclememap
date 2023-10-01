@@ -7,7 +7,7 @@ import {
   INITIAL_MAP_ZOOM,
   MIN_MAP_ZOOM
 } from '@common/constants';
-import { Snackbar } from '@components/common';
+import { Snackbar } from '@root/components';
 import { StoreContext, IRootStore, RootStore } from '@root/store';
 
 export const createStore = (): IRootStore => {

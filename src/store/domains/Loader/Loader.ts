@@ -5,9 +5,11 @@ export class Loader {
 
   constructor() {
     this.loaders = {};
+
     makeObservable(this, {
       loaders: observable,
-      setLoader: action
+      setLoader: action,
+      deleteLoader: action
     });
   }
 

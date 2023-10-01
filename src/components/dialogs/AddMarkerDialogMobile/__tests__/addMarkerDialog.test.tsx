@@ -19,7 +19,7 @@ describe('AddMarkerDialogMobile logic', () => {
   it('creates a new marker and closes the dialog on add button click', async () => {
     store.mapDomain.setCurrentPosition(LAT_LNG_MOCK);
 
-    const addNewMarkerSpy = jest.spyOn(store.mapDomain, 'addNewMarker');
+    const addNewMarkerSpy = jest.spyOn(store.markersDomain, 'addNewMarker');
     const onCloseSpy = jest.fn();
 
     apiMock
@@ -54,7 +54,7 @@ describe('AddMarkerDialogMobile logic', () => {
   it('shows an error snackbar if adding a new marker is failed', async () => {
     store.mapDomain.setCurrentPosition(LAT_LNG_MOCK);
 
-    const addNewMarkerSpy = jest.spyOn(store.mapDomain, 'addNewMarker');
+    const addNewMarkerSpy = jest.spyOn(store.markersDomain, 'addNewMarker');
     const onCloseSpy = jest.fn();
 
     apiMock

@@ -11,9 +11,9 @@ import {
 } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'react-i18next';
-import { Flex, LoadingModal } from '@components/containers';
+import { Flex, LoadingModal } from '@root/components';
 import { useStore } from '@root/store';
-import { MapLoaders } from '@root/store/domains';
+import { MarkersLoaders, MapLoaders } from '@root/store/domains';
 import { sizes } from '@root/theme';
 import { noop } from '@utils/helpers';
 
@@ -23,16 +23,16 @@ interface AddMarkerDialogProps {
 
 export const AddMarkerDialog = observer(({ onClose }: AddMarkerDialogProps) => {
   const { t } = useTranslation();
-  const { markerView, mapDomain, loader } = useStore();
+  const { markersView, markersDomain, mapDomain, loader } = useStore();
 
   const editHandler = () => {
-    markerView.setIsNewMarkerActive(true);
+    markersView.setIsNewMarkerActive(true);
 
     onClose();
   };
 
   const addNewMarker = async () => {
-    await mapDomain
+    await markersDomain
       .addNewMarker()
       .then(() => onClose())
       .catch(noop);
@@ -62,13 +62,13 @@ export const AddMarkerDialog = observer(({ onClose }: AddMarkerDialogProps) => {
         </DialogContent>
         <DialogActions>
           <LoadingButton
-            loading={loader.isLoading(MapLoaders.AddNewMarker)}
+            loading={loader.isLoading(MarkersLoaders.AddNewMarker)}
             onClick={addNewMarker}
           >
             {t('addMarkerDialog.addButton')}
           </LoadingButton>
           <Button
-            disabled={loader.isLoading(MapLoaders.AddNewMarker)}
+            disabled={loader.isLoading(MarkersLoaders.AddNewMarker)}
             onClick={() => onClose()}
           >
             {t('addMarkerDialog.cancelButton')}

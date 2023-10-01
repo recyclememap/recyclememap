@@ -19,7 +19,7 @@ describe('AddMarkerDialog logic', () => {
   it('creates new marker and closes dialog on add button click', async () => {
     store.mapDomain.setCurrentPosition(LAT_LNG_MOCK);
 
-    const addNewMarkerSpy = jest.spyOn(store.mapDomain, 'addNewMarker');
+    const addNewMarkerSpy = jest.spyOn(store.markersDomain, 'addNewMarker');
     const onCloseSpy = jest.fn();
 
     apiMock
@@ -49,7 +49,7 @@ describe('AddMarkerDialog logic', () => {
     userEvent.click(screen.getByTitle(DialogElements.EditButton));
 
     await waitFor(() => expect(onCloseSpy).toBeCalledTimes(1));
-    expect(store.markerView.isNewMarkerActive).toBe(true);
+    expect(store.markersView.isNewMarkerActive).toBe(true);
   });
 
   it('closes the dialog on cancel button click', async () => {
@@ -67,7 +67,7 @@ describe('AddMarkerDialog logic', () => {
   it('shows an error snackbar if adding a new marker is failed', async () => {
     store.mapDomain.setCurrentPosition(LAT_LNG_MOCK);
 
-    const addNewMarkerSpy = jest.spyOn(store.mapDomain, 'addNewMarker');
+    const addNewMarkerSpy = jest.spyOn(store.markersDomain, 'addNewMarker');
     const onCloseSpy = jest.fn();
 
     apiMock

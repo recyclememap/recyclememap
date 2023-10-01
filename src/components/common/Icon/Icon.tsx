@@ -1,4 +1,4 @@
-import { styled, Tooltip } from '@mui/material';
+import { styled } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { flatIcons } from './FlatIcons';
 import type { flatIconsKeys } from './FlatIcons';
@@ -30,8 +30,11 @@ export const Icon = ({ name }: IconProps) => {
   const { color, src, title } = flatIcons[name];
 
   return (
-    <Tooltip arrow title={t(`icons.${title}`)}>
-      <IconEl src={src} iconBgColor={color} sizeName="s" />
-    </Tooltip>
+    <IconEl
+      src={src}
+      iconBgColor={color}
+      sizeName="s"
+      title={t(`icons.${title}`)}
+    />
   );
 };

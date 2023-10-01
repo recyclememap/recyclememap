@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'react-i18next';
 import { Flex, LoadingContainer } from '@components/containers';
 import { useStore } from '@root/store';
-import { MapLoaders } from '@root/store/domains';
+import { MarkersLoaders, MapLoaders } from '@root/store/domains';
 import { noop } from '@utils/helpers';
 import { DialogContainer } from './styled';
 
@@ -15,10 +15,10 @@ interface AddMarkerDialogMobileProps {
 export const AddMarkerDialogMobile = observer(
   ({ onClose }: AddMarkerDialogMobileProps) => {
     const { t } = useTranslation();
-    const { mapDomain, loader } = useStore();
+    const { mapDomain, markersDomain, loader } = useStore();
 
     const addNewMarker = async () => {
-      await mapDomain
+      await markersDomain
         .addNewMarker()
         .then(() => onClose(true))
         .catch(noop);
@@ -38,13 +38,13 @@ export const AddMarkerDialogMobile = observer(
             </Typography>
             <Flex>
               <LoadingButton
-                loading={loader.isLoading(MapLoaders.AddNewMarker)}
+                loading={loader.isLoading(MarkersLoaders.AddNewMarker)}
                 onClick={addNewMarker}
               >
                 {t('addMarkerDialog.addButton')}
               </LoadingButton>
               <Button
-                disabled={loader.isLoading(MapLoaders.AddNewMarker)}
+                disabled={loader.isLoading(MarkersLoaders.AddNewMarker)}
                 onClick={() => onClose(true)}
               >
                 {t('addMarkerDialog.cancelButton')}

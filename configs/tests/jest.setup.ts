@@ -1,5 +1,8 @@
+import { TextEncoder } from 'util';
 import nock from 'nock';
 import '@testing-library/jest-dom';
+
+global.TextEncoder = TextEncoder;
 
 global.beforeEach(() => {
   const apiMock = nock('http://127.0.0.1:3100/api');

@@ -1,24 +1,12 @@
-import { Box } from '@mui/material';
-import { observer } from 'mobx-react-lite';
-import { KeyboardEvent } from 'react';
-import { MarkerLayout, MapLayout } from '@root/components';
-import { useStore } from '@root/store';
+import { AddMarkerLayout, MapLayout, MarkerHandler } from '@root/components';
 
-const HomePage = observer(() => {
-  const { markerView } = useStore();
-
-  const cancelAddingMarker = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === 'Escape' && markerView.isNewMarkerActive) {
-      markerView.setIsNewMarkerActive(false);
-    }
-  };
-
+const HomePage = () => {
   return (
-    <Box onKeyDown={cancelAddingMarker}>
+    <MarkerHandler>
       <MapLayout />
-      <MarkerLayout />
-    </Box>
+      <AddMarkerLayout />
+    </MarkerHandler>
   );
-});
+};
 
 export default HomePage;

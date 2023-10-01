@@ -7,18 +7,18 @@ import { useStore } from '@root/store';
 import { CenterPositionControl } from './controllers/CenterPositionControl';
 
 export const Map = observer(() => {
-  const { mapDomain, markerView } = useStore();
+  const { mapDomain, markersView } = useStore();
   const map = useMap();
 
   useMapEvents({
     click: async (event) => {
-      if (markerView.isNewMarkerActive && event.latlng) {
-        markerView.setIsMarkerDialogOpen(true);
-        markerView.setIsNewMarkerActive(false);
+      if (markersView.isNewMarkerActive && event.latlng) {
+        markersView.setIsNewMarkerDialogOpen(true);
+        markersView.setIsNewMarkerActive(false);
 
         await mapDomain
           .getAddress(event.latlng.lat, event.latlng.lng)
-          .catch(() => markerView.setIsMarkerDialogOpen(false));
+          .catch(() => markersView.setIsNewMarkerDialogOpen(false));
 
         if (mapDomain.currentAddress) {
           mapDomain.setCurrentPosition(event.latlng);
@@ -28,10 +28,10 @@ export const Map = observer(() => {
   });
 
   useEffect(() => {
-    map.getContainer().style.cursor = markerView.isNewMarkerActive
+    map.getContainer().style.cursor = markersView.isNewMarkerActive
       ? `url(${AddLocationIcon}) 20 40, auto`
       : 'grab';
-  }, [map, markerView.isNewMarkerActive]);
+  }, [map, markersView.isNewMarkerActive]);
 
   return (
     <>
@@ -40,7 +40,7 @@ export const Map = observer(() => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <ZoomControl position="bottomright" />
-      {markerView.isNewMobileMarkerActive && <CenterPositionControl />}
+      {markersView.isNewMobileMarkerActive && <CenterPositionControl />}
     </>
   );
 });

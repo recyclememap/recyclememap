@@ -1,12 +1,12 @@
 import { screen } from '@testing-library/react';
-import { DialogElements } from '@components/dialogs/AddMarkerDialog/__tests__/test-data';
+import { DialogElements } from '@root/components/dialogs/AddMarkerDialog/__tests__/test-data';
 import { IRootStore } from '@root/store';
 import { createStore, renderWithStore } from '@utils/tests/helpers';
-import { MarkerLayout } from '../MarkerLayout';
+import { AddMarkerLayout } from '../AddMarkerLayout';
 import { MOBILE_MARKER_TEST_ID } from '../MobileMarker/__tests__/test-data';
 import { LayoutElements } from './test-data';
 
-describe('MarkerLayout visual', () => {
+describe('AddMarkerLayout visual', () => {
   let store: IRootStore;
 
   beforeEach(() => {
@@ -14,23 +14,23 @@ describe('MarkerLayout visual', () => {
   });
 
   it('renders correct elements', () => {
-    renderWithStore(store, <MarkerLayout />);
+    renderWithStore(store, <AddMarkerLayout />);
 
     screen.getByTitle(LayoutElements.FabTitle);
   });
 
   it('renders the correct marker dialog', () => {
-    store.markerView.setIsMarkerDialogOpen(true);
+    store.markersView.setIsNewMarkerDialogOpen(true);
 
-    renderWithStore(store, <MarkerLayout />);
+    renderWithStore(store, <AddMarkerLayout />);
 
     screen.getByText(DialogElements.Title);
   });
 
   it('renders the correct mobile marker dialog and mobile marker', async () => {
-    store.markerView.setIsNewMobileMarkerActive(true);
+    store.markersView.setIsNewMobileMarkerActive(true);
 
-    renderWithStore(store, <MarkerLayout />);
+    renderWithStore(store, <AddMarkerLayout />);
 
     screen.getByText(DialogElements.Title);
     screen.getByTestId(MOBILE_MARKER_TEST_ID);

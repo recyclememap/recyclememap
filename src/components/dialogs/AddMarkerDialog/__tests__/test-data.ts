@@ -7,8 +7,8 @@ export const DialogElements = {
   Description: 'addMarkerDialog.description',
   AddButton: 'addMarkerDialog.addButton',
   CancelButton: 'addMarkerDialog.cancelButton',
-  SuccessMessage: 'mapDomain.addNewMarkerSuccessMessage',
-  ErrorMessage: 'common.errorTitle. mapDomain.addNewMarkerErrorMessage'
+  SuccessMessage: 'markersDomain.addNewMarkerSuccessMessage',
+  ErrorMessage: 'common.errorTitle. markersDomain.addNewMarkerErrorMessage'
 };
 
 export const LAT_LNG_MOCK = { lat: 1, lng: 2 } as LatLng;

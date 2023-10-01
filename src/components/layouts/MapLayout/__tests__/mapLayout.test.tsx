@@ -1,3 +1,6 @@
+import { waitFor } from '@testing-library/react';
+import { Scope } from 'nock';
+import { StatusCodes } from '@common/constants';
 import { IRootStore } from '@root/store';
 import {
   createStore,
@@ -6,35 +9,52 @@ import {
   MockBreakpoints
 } from '@utils/tests/helpers';
 import { MapLayout } from '../MapLayout';
+import { MARKERS_MOCK } from './test-data';
 
 describe('MapLayout logic', () => {
   let store: IRootStore;
+  let apiMock: Scope;
 
   beforeEach(() => {
     store = createStore();
+    apiMock = (global as any).apiMock;
+  });
+
+  it('gets markers', async () => {
+    apiMock.get('/markers').once().reply(StatusCodes.Ok, MARKERS_MOCK);
+
+    renderWithStore(store, <MapLayout />);
+
+    await waitFor(() =>
+      expect(store.markersDomain.markers).toStrictEqual(MARKERS_MOCK)
+    );
   });
 
   it('resets desktop markers on resize', () => {
     fireResize(MockBreakpoints.desktop);
-    store.markerView.setIsMarkerDialogOpen(true);
-    store.markerView.setIsNewMarkerActive(true);
+    store.markersView.setIsNewMarkerDialogOpen(true);
+    store.markersView.setIsNewMarkerActive(true);
+
+    apiMock.get('/markers').once().reply(StatusCodes.Ok, MARKERS_MOCK);
 
     renderWithStore(store, <MapLayout />);
 
     fireResize(MockBreakpoints.mobile);
 
-    expect(store.markerView.isMarkerDialogOpen).toBe(false);
-    expect(store.markerView.isNewMarkerActive).toBe(false);
+    expect(store.markersView.isNewMarkerDialogOpen).toBe(false);
+    expect(store.markersView.isNewMarkerActive).toBe(false);
   });
 
   it('resets mobile markers on resize', () => {
     fireResize(MockBreakpoints.mobile);
-    store.markerView.setIsNewMobileMarkerActive(true);
+    store.markersView.setIsNewMobileMarkerActive(true);
+
+    apiMock.get('/markers').once().reply(StatusCodes.Ok, MARKERS_MOCK);
 
     renderWithStore(store, <MapLayout />);
 
     fireResize(MockBreakpoints.desktop);
 
-    expect(store.markerView.isNewMobileMarkerActive).toBe(false);
+    expect(store.markersView.isNewMobileMarkerActive).toBe(false);
   });
 });

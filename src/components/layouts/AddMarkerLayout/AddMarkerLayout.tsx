@@ -10,15 +10,15 @@ import { MobileMarker } from './MobileMarker/MobileMarker';
 
 const FAB_DEFAULT_POSITION = 100;
 
-export const MarkerLayout = observer(() => {
+export const AddMarkerLayout = observer(() => {
   const { t } = useTranslation();
   const theme = useTheme();
-  const { markerView, mapDomain } = useStore();
+  const { markersView: markerView, mapDomain } = useStore();
 
   const closeDialogHandler = (isMobile = false) => {
     isMobile
       ? markerView.setIsNewMobileMarkerActive(false)
-      : markerView.setIsMarkerDialogOpen(false);
+      : markerView.setIsNewMarkerDialogOpen(false);
     mapDomain.setCurrentPosition(null);
     mapDomain.setCurrentAddress(null);
   };
@@ -52,7 +52,7 @@ export const MarkerLayout = observer(() => {
       >
         <AddLocationIcon />
       </Fab>
-      {markerView.isMarkerDialogOpen && (
+      {markerView.isNewMarkerDialogOpen && (
         <AddMarkerDialog onClose={closeDialogHandler} />
       )}
       {markerView.isNewMobileMarkerActive && (

@@ -1,23 +1,23 @@
 import { observable, makeObservable, action } from 'mobx';
 
-export class MarkerView {
-  isMarkerDialogOpen = false;
+export class MarkersView {
+  isNewMarkerDialogOpen = false;
   isNewMarkerActive = false;
   isNewMobileMarkerActive = false;
 
   constructor() {
     makeObservable(this, {
-      isMarkerDialogOpen: observable,
+      isNewMarkerDialogOpen: observable,
       isNewMarkerActive: observable,
       isNewMobileMarkerActive: observable,
       setIsNewMarkerActive: action,
       setIsNewMobileMarkerActive: action,
-      setIsMarkerDialogOpen: action
+      setIsNewMarkerDialogOpen: action
     });
   }
 
-  setIsMarkerDialogOpen(state: boolean): void {
-    this.isMarkerDialogOpen = state;
+  setIsNewMarkerDialogOpen(state: boolean): void {
+    this.isNewMarkerDialogOpen = state;
   }
 
   setIsNewMarkerActive(state: boolean): void {

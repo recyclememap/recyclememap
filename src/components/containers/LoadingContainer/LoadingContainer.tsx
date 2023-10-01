@@ -1,5 +1,5 @@
 import { PropsWithChildren } from '@common/types';
-import { Loader } from '@components/common';
+import { Loader } from '@root/components';
 
 interface IProps {
   isLoading: boolean;

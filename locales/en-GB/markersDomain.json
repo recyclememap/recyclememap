@@ -1,0 +1,5 @@
+{
+    "addNewMarkerErrorMessage": "Failed to add marker",
+    "getMarkersErrorMessage": "Failed to get markers",
+    "addNewMarkerSuccessMessage": "New marker was sent to moderators"
+}
