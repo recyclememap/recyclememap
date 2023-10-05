@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import { IconNames } from '@root/components';
 import { createStore, renderWithLeaflet } from '@utils/tests/helpers';
 import { Placemark } from '../Placemark';
-import { MOCK_POSITION, StreetName, PlacemarkId } from './test-data';
+import { MOCK_POSITION, AddressName, PlacemarkId } from './test-data';
 
 describe('Placemark visual', () => {
   it('renders a placemark', async () => {
@@ -11,7 +11,7 @@ describe('Placemark visual', () => {
       <Placemark
         position={MOCK_POSITION}
         icons={IconNames}
-        street={StreetName}
+        address={AddressName}
       />
     );
 

@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { MOBILE_DIALOG_HEIGHT } from '@common/constants';
 import { sizes } from '@root/theme';
 
 export const DialogContainer = styled(Box)(({ theme }) => ({
@@ -7,7 +8,7 @@ export const DialogContainer = styled(Box)(({ theme }) => ({
   position: 'absolute',
   zIndex: 1000,
   bottom: 0,
-  height: '180px',
+  height: `${MOBILE_DIALOG_HEIGHT}px`,
   width: '100%',
   backgroundColor: 'white',
   borderTopLeftRadius: sizes[8].rem,

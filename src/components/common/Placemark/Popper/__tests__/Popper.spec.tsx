@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import { IconNames } from '@root/components';
 import { Popper } from '../Popper';
-import { StreetName } from './test-data';
+import { AddressName } from './test-data';
 
 describe('Popper visual', () => {
   it('renders a popper', async () => {
-    render(<Popper icons={IconNames} street={StreetName} />);
+    render(<Popper icons={IconNames} address={AddressName} />);
 
-    screen.getByText(StreetName);
+    screen.getByText(AddressName);
     screen.getAllByRole('img');
   });
 });

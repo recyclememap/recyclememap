@@ -20,6 +20,8 @@ describe('AddMarkerDialog visual', () => {
     screen.getByText(DialogElements.AddressLabel);
     screen.getByText(DialogElements.Description);
     screen.getByTitle(DialogElements.EditButton);
+    screen.getByText(DialogElements.WasteTypesDescription);
+    screen.getByLabelText(DialogElements.WasteTypsLabel);
     screen.getByText(DialogElements.AddButton);
     screen.getByText(DialogElements.CancelButton);
   });

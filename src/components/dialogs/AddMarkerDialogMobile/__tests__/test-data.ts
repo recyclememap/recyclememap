@@ -1,8 +1,15 @@
 import { LatLng } from 'leaflet';
+import { WasteTypes } from '@common/constants';
 
 export const DialogElements = {
   Title: 'addMarkerDialog.title',
   AddressLabel: 'addMarkerDialog.addressLabel',
+  Address: 'test address',
+  WasteTypesDescription: 'addMarkerDialog.wasteTypesDescription',
+  WasteTypsLabel: 'addMarkerDialog.wasteTypesLabel',
+  WasteType: `icons.${WasteTypes.Batteries}.title`,
+  WasteTypesValidationError: 'addMarkerDialog.wasteTypesError',
+  CancelChipIcon: 'CancelIcon',
   Description: 'addMarkerDialog.description',
   AddButton: 'addMarkerDialog.addButton',
   CancelButton: 'addMarkerDialog.cancelButton',
