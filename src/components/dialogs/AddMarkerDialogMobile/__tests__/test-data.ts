@@ -6,7 +6,7 @@ export const DialogElements = {
   AddressLabel: 'addMarkerDialog.addressLabel',
   Address: 'test address',
   WasteTypesDescription: 'addMarkerDialog.wasteTypesDescription',
-  WasteTypsLabel: 'addMarkerDialog.wasteTypesLabel',
+  WasteTypesLabel: 'addMarkerDialog.wasteTypesLabel',
   WasteType: `icons.${WasteTypes.Batteries}.title`,
   WasteTypesValidationError: 'addMarkerDialog.wasteTypesError',
   CancelChipIcon: 'CancelIcon',
