@@ -8,16 +8,16 @@ import { Popper } from './Popper/Popper';
 
 type PlacemarkProps = {
   icons: flatIconsKeys[];
-  street: string;
+  address: string;
   position: LatLngExpression;
 };
 
-export const Placemark = ({ icons, street, position }: PlacemarkProps) => {
+export const Placemark = ({ icons, address, position }: PlacemarkProps) => {
   const icon = Leaflet.divIcon({
     className: 'marker',
     iconSize: [50, 50],
     html: `
-    <div data-testid=placemark-${street}>
+    <div data-testid=placemark-${address}>
       ${renderToString(<Marker icons={icons} />)}
     </div>`
   });
@@ -26,7 +26,7 @@ export const Placemark = ({ icons, street, position }: PlacemarkProps) => {
     <>
       <LeafletMarker position={position} icon={icon}>
         <LeafletPopper>
-          <Popper icons={icons} street={street} />
+          <Popper icons={icons} address={address} />
         </LeafletPopper>
       </LeafletMarker>
     </>

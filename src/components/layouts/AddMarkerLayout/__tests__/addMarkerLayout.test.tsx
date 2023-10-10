@@ -27,7 +27,7 @@ describe('AddMarkerLayout logic', () => {
 
     renderWithStore(store, <AddMarkerLayout />);
 
-    userEvent.click(screen.getByTitle(LayoutElements.FabTitle));
+    await userEvent.click(screen.getByTitle(LayoutElements.FabTitle));
 
     await waitFor(() => expect(store.markersView.isNewMarkerActive).toBe(true));
   });
@@ -37,7 +37,7 @@ describe('AddMarkerLayout logic', () => {
 
     renderWithStore(store, <AddMarkerLayout />);
 
-    userEvent.click(screen.getByTitle(LayoutElements.FabTitle));
+    await userEvent.click(screen.getByTitle(LayoutElements.FabTitle));
 
     await screen.findByText(DialogElements.Title);
     screen.getByTestId(MOBILE_MARKER_TEST_ID);
@@ -51,7 +51,7 @@ describe('AddMarkerLayout logic', () => {
 
     renderWithStore(store, <AddMarkerLayout />);
 
-    userEvent.click(await screen.findByText(DialogElements.CancelButton));
+    await userEvent.click(await screen.findByText(DialogElements.CancelButton));
 
     await waitFor(() =>
       expect(screen.queryByText(DialogElements.Title)).toBeNull()
@@ -67,9 +67,9 @@ describe('AddMarkerLayout logic', () => {
 
     renderWithStore(store, <AddMarkerLayout />);
 
-    userEvent.click(screen.getByTitle(LayoutElements.FabTitle));
+    await userEvent.click(screen.getByTitle(LayoutElements.FabTitle));
 
-    userEvent.click(await screen.findByText(DialogElements.CancelButton));
+    await userEvent.click(await screen.findByText(DialogElements.CancelButton));
 
     await waitFor(() =>
       expect(screen.queryByText(DialogElements.Title)).toBeNull()

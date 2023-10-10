@@ -4,14 +4,14 @@ import { Icon } from '@root/components';
 
 type PopperProps = {
   icons: flatIconsKeys[];
-  street: string;
+  address: string;
 };
 
-export const Popper = ({ street, icons }: PopperProps) => {
+export const Popper = ({ address, icons }: PopperProps) => {
   return (
     <>
       <Typography variant="h5" color="text.secondary">
-        {street}
+        {address}
       </Typography>
       <Box sx={{ paddingTop: '16px', display: 'flex', gap: '10px' }}>
         {icons.map((name) => {

@@ -51,12 +51,12 @@ export const MapLayout = observer(() => {
       >
         <Map />
         {markersDomain.markers.length > 0 &&
-          markersDomain.markers.map(({ position, icons, street }, idx) => (
+          markersDomain.markers.map(({ position, icons, address }, idx) => (
             <Placemark
               key={idx}
               position={position}
               icons={icons}
-              street={street}
+              address={address}
             />
           ))}
       </LeafletMapContainer>

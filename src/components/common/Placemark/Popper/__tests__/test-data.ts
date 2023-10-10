@@ -1,1 +1,1 @@
-export const StreetName = 'test-street-name';
+export const AddressName = 'test-address-name';

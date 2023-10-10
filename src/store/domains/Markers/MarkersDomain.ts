@@ -3,7 +3,7 @@ import { RootStore } from '@root/store';
 import { loader, notify } from '@utils/decorators';
 import { MarkersLoaders } from './constants';
 import { markersApi } from './requests';
-import { MarkersList } from './types';
+import { MarkersList, NewMarkerForm } from './types';
 
 export class MarkersDomain {
   private rootStore: RootStore;
@@ -43,13 +43,20 @@ export class MarkersDomain {
     }
   )
   @loader(MarkersLoaders.AddNewMarker)
-  async addNewMarker(): Promise<void> {
-    if (this.rootStore.mapDomain.currentPosition) {
+  async addNewMarker({ wasteTypes }: NewMarkerForm): Promise<void> {
+    if (
+      this.rootStore.mapDomain.currentPosition &&
+      this.rootStore.mapDomain.currentAddress
+    ) {
       const { lat, lng } = this.rootStore.mapDomain.currentPosition;
 
       await markersApi.addNewMarker({
-        position: [lat, lng]
+        position: [lat, lng],
+        address: this.rootStore.mapDomain.currentAddress,
+        wasteTypes
       });
+    } else {
+      throw new Error();
     }
   }
 }
