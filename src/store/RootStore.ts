@@ -1,23 +1,26 @@
-import { Loader, Notification, MapDomain } from './domains';
-import { MarkerView } from './views';
+import { Loader, Notification, MapDomain, MarkersDomain } from './domains';
+import { MarkersView } from './views';
 
 export interface IRootStore {
   loader: Loader;
   notification: Notification;
   mapDomain: MapDomain;
-  markerView: MarkerView;
+  markersDomain: MarkersDomain;
+  markersView: MarkersView;
 }
 
 export class RootStore implements IRootStore {
   loader: Loader;
   notification: Notification;
   mapDomain: MapDomain;
-  markerView: MarkerView;
+  markersDomain: MarkersDomain;
+  markersView: MarkersView;
 
   constructor() {
     this.loader = new Loader();
     this.notification = new Notification();
     this.mapDomain = new MapDomain(this);
-    this.markerView = new MarkerView();
+    this.markersDomain = new MarkersDomain(this);
+    this.markersView = new MarkersView();
   }
 }

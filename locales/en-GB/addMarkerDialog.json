@@ -1,6 +1,9 @@
 {
     "title": "New marker",
     "addressLabel": "Address: ",
+    "wasteTypesDescription": "Select one or more types of waste:",
+    "wasteTypesLabel": "Types of waste",
+    "wasteTypesError": "Select at least one",
     "description": "New marker will be added when after moderator validation",
     "editButton": "Edit",
     "addButton": "Add",

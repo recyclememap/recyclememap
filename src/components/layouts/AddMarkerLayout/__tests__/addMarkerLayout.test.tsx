@@ -11,11 +11,11 @@ import {
   renderWithStore,
   MockBreakpoints
 } from '@utils/tests/helpers';
-import { MarkerLayout } from '../MarkerLayout';
+import { AddMarkerLayout } from '../AddMarkerLayout';
 import { MOBILE_MARKER_TEST_ID } from '../MobileMarker/__tests__/test-data';
 import { LayoutElements, ADDRESS_MOCK } from './test-data';
 
-describe('MarkerLayout logic', () => {
+describe('AddMarkerLayout logic', () => {
   let store: IRootStore;
 
   beforeEach(() => {
@@ -25,19 +25,19 @@ describe('MarkerLayout logic', () => {
   it('sets a new marker active on Fab click', async () => {
     fireResize(MockBreakpoints.desktop);
 
-    renderWithStore(store, <MarkerLayout />);
+    renderWithStore(store, <AddMarkerLayout />);
 
-    userEvent.click(screen.getByTitle(LayoutElements.FabTitle));
+    await userEvent.click(screen.getByTitle(LayoutElements.FabTitle));
 
-    await waitFor(() => expect(store.markerView.isNewMarkerActive).toBe(true));
+    await waitFor(() => expect(store.markersView.isNewMarkerActive).toBe(true));
   });
 
   it('shows a new mobile marker icon and opens a mobile dialog on Fab click', async () => {
     fireResize(MockBreakpoints.mobile);
 
-    renderWithStore(store, <MarkerLayout />);
+    renderWithStore(store, <AddMarkerLayout />);
 
-    userEvent.click(screen.getByTitle(LayoutElements.FabTitle));
+    await userEvent.click(screen.getByTitle(LayoutElements.FabTitle));
 
     await screen.findByText(DialogElements.Title);
     screen.getByTestId(MOBILE_MARKER_TEST_ID);
@@ -45,13 +45,13 @@ describe('MarkerLayout logic', () => {
 
   it('resets data and closes the dialog on dialog cancel button click', async () => {
     fireResize(MockBreakpoints.desktop);
-    store.markerView.setIsMarkerDialogOpen(true);
+    store.markersView.setIsNewMarkerDialogOpen(true);
     store.mapDomain.setCurrentPosition(LAT_LNG_MOCK);
     store.mapDomain.setCurrentAddress(ADDRESS_MOCK);
 
-    renderWithStore(store, <MarkerLayout />);
+    renderWithStore(store, <AddMarkerLayout />);
 
-    userEvent.click(await screen.findByText(DialogElements.CancelButton));
+    await userEvent.click(await screen.findByText(DialogElements.CancelButton));
 
     await waitFor(() =>
       expect(screen.queryByText(DialogElements.Title)).toBeNull()
@@ -65,11 +65,11 @@ describe('MarkerLayout logic', () => {
     store.mapDomain.setCurrentPosition(LAT_LNG_MOCK);
     store.mapDomain.setCurrentAddress(ADDRESS_MOCK);
 
-    renderWithStore(store, <MarkerLayout />);
+    renderWithStore(store, <AddMarkerLayout />);
 
-    userEvent.click(screen.getByTitle(LayoutElements.FabTitle));
+    await userEvent.click(screen.getByTitle(LayoutElements.FabTitle));
 
-    userEvent.click(await screen.findByText(DialogElements.CancelButton));
+    await userEvent.click(await screen.findByText(DialogElements.CancelButton));
 
     await waitFor(() =>
       expect(screen.queryByText(DialogElements.Title)).toBeNull()

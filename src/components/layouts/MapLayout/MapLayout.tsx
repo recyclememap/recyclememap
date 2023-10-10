@@ -8,32 +8,39 @@ import {
   INITIAL_MAP_ZOOM,
   MIN_MAP_ZOOM
 } from '@common/constants';
+import { Placemark } from '@root/components';
 import { useStore } from '@root/store';
+import { noop } from '@utils/helpers';
 import { mapStyle } from './map.css';
 import { Map } from './Map/Map';
 import { StyledWrapper } from './styled';
 
 export const MapLayout = observer(() => {
   const theme = useTheme();
-  const { markerView } = useStore();
+  const { markersView, markersDomain } = useStore();
+
+  useEffect(() => {
+    markersDomain.getMarkers().catch(noop);
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     const updateWindowWidth = () => {
       if (window.innerWidth > theme.breakpoints.values.md) {
-        markerView.setIsNewMobileMarkerActive(false);
+        markersView.setIsNewMobileMarkerActive(false);
       } else {
-        markerView.setIsNewMarkerActive(false);
-        markerView.setIsMarkerDialogOpen(false);
+        markersView.setIsNewMarkerActive(false);
+        markersView.setIsNewMarkerDialogOpen(false);
       }
     };
 
     window.addEventListener('resize', updateWindowWidth);
 
     return () => window.removeEventListener('resize', updateWindowWidth);
-  }, [markerView, theme]);
+  }, [markersView, theme]);
 
   return (
-    <StyledWrapper isMobileMarkerActive={markerView.isNewMobileMarkerActive}>
+    <StyledWrapper isMobileMarkerActive={markersView.isNewMobileMarkerActive}>
       <LeafletMapContainer
         center={ASHDOD_COORDINATES}
         maxBounds={ASHDOD_MAX_BOUNDS}
@@ -43,6 +50,15 @@ export const MapLayout = observer(() => {
         zoomControl={false}
       >
         <Map />
+        {markersDomain.markers.length > 0 &&
+          markersDomain.markers.map(({ position, icons, address }, idx) => (
+            <Placemark
+              key={idx}
+              position={position}
+              icons={icons}
+              address={address}
+            />
+          ))}
       </LeafletMapContainer>
     </StyledWrapper>
   );

@@ -1,5 +1,3 @@
 {
-    "getAddressErrorMessage": "Failed to get address",
-    "addNewMarkerErrorMessage": "Failed to add marker",
-    "addNewMarkerSuccessMessage": "New marker was sent to moderators"
+    "getAddressErrorMessage": "Failed to get address"
 }

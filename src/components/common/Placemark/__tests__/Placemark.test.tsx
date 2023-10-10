@@ -1,21 +1,23 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { IconNames } from '@root/components';
+import { createStore, renderWithLeaflet } from '@utils/tests/helpers';
 import { Placemark } from '../Placemark';
-import { StreetName } from './test-data';
+import { AddressName, PlacemarkId, MOCK_POSITION } from './test-data';
 
 describe('Placemark logic', () => {
-  it('shows Popper when hovering the mouse over the Placemark', async () => {
-    render(<Placemark icons={IconNames} street={StreetName} />);
+  it('shows Popper on the Placemark click', async () => {
+    renderWithLeaflet(
+      createStore(),
+      <Placemark
+        position={MOCK_POSITION}
+        icons={IconNames}
+        address={AddressName}
+      />
+    );
 
-    await userEvent.hover(screen.getByTestId(Placemark.name));
+    await userEvent.click(screen.getByTestId(PlacemarkId));
 
-    await screen.findByRole('tooltip');
-  });
-
-  it('does not show Popper by default', async () => {
-    render(<Placemark icons={IconNames} street={StreetName} />);
-
-    expect(screen.queryByText(StreetName)).toBeNull();
+    await screen.findByText(AddressName);
   });
 });

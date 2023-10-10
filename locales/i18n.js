@@ -6,11 +6,13 @@ import * as commontEnGB from './en-GB/common.json';
 import * as iconsEnGB from './en-GB/icons.json';
 import * as mapDomainEnGB from './en-GB/mapDomain.json';
 import * as markerLayoutEnGB from './en-GB/markerLayout.json';
+import * as markersDomainEnGB from './en-GB/markersDomain.json';
 import * as addMarkerDialogRuRU from './ru-Ru/addMarkerDialog.json';
 import * as commontRuRU from './ru-Ru/common.json';
 import * as iconsRuRU from './ru-Ru/icons.json';
 import * as mapDomainRuRU from './ru-Ru/mapDomain.json';
 import * as markerLayoutRuRU from './ru-Ru/markerLayout.json';
+import * as markersDomainRuRU from './ru-Ru/markersDomain.json';
 
 // the translations
 // (tip move them in a JSON file and import them,
@@ -22,6 +24,7 @@ const resources = {
       addMarkerDialog: addMarkerDialogEnGB,
       markerLayout: markerLayoutEnGB,
       mapDomain: mapDomainEnGB,
+      markersDomain: markersDomainEnGB,
       common: commontEnGB
     }
   },
@@ -31,6 +34,7 @@ const resources = {
       addMarkerDialog: addMarkerDialogRuRU,
       markerLayout: markerLayoutRuRU,
       mapDomain: mapDomainRuRU,
+      markersDomain: markersDomainRuRU,
       common: commontRuRU
     }
   }

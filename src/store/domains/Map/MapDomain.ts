@@ -46,22 +46,4 @@ export class MapDomain {
 
     this.setCurrentAddress(displayAddress);
   }
-
-  @notify(
-    {
-      message: 'common.errorTitle',
-      details: 'mapDomain.addNewMarkerErrorMessage'
-    },
-    {
-      message: 'mapDomain.addNewMarkerSuccessMessage'
-    }
-  )
-  @loader(MapLoaders.AddNewMarker)
-  async addNewMarker(): Promise<void> {
-    if (this.currentPosition) {
-      await mapApi.addNewMarker({
-        position: [this.currentPosition.lat, this.currentPosition.lng]
-      });
-    }
-  }
 }
