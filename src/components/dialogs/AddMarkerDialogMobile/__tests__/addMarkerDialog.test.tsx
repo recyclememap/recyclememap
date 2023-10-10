@@ -84,7 +84,7 @@ describe('AddMarkerDialogMobile logic', () => {
 
     expect(addButton).toBeDisabled();
 
-    await userEvent.click(screen.getByLabelText(DialogElements.WasteTypsLabel));
+    await userEvent.click(screen.getByLabelText(DialogElements.WasteTypesLabel));
     await userEvent.click(screen.getByText(DialogElements.WasteType));
 
     expect(addButton).toBeEnabled();
