@@ -13,7 +13,7 @@ export type NewMarker = {
 export type Marker = {
   id: string;
   position: LatLngExpression;
-  icons: flatIconsKeys[];
+  wasteTypes: flatIconsKeys[];
   address: string;
   date: string;
 };

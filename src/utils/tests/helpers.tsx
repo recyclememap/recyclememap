@@ -1,12 +1,7 @@
 import { RenderResult, render } from '@testing-library/react';
 import { ReactElement } from 'react';
 import { MapContainer } from 'react-leaflet';
-import {
-  ASHDOD_COORDINATES,
-  ASHDOD_MAX_BOUNDS,
-  INITIAL_MAP_ZOOM,
-  MIN_MAP_ZOOM
-} from '@common/constants';
+import { ASHDOD_COORDINATES, INITIAL_MAP_ZOOM } from '@common/constants';
 import { Snackbar } from '@root/components';
 import { StoreContext, IRootStore, RootStore } from '@root/store';
 
@@ -35,9 +30,7 @@ export const renderWithLeaflet = (
     <StoreContext.Provider value={store}>
       <MapContainer
         center={ASHDOD_COORDINATES}
-        maxBounds={ASHDOD_MAX_BOUNDS}
         zoom={INITIAL_MAP_ZOOM}
-        minZoom={MIN_MAP_ZOOM}
         zoomControl={false}
       >
         {component}

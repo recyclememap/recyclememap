@@ -2,12 +2,7 @@ import { useTheme } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { MapContainer as LeafletMapContainer } from 'react-leaflet';
-import {
-  ASHDOD_COORDINATES,
-  ASHDOD_MAX_BOUNDS,
-  INITIAL_MAP_ZOOM,
-  MIN_MAP_ZOOM
-} from '@common/constants';
+import { ASHDOD_COORDINATES, INITIAL_MAP_ZOOM } from '@common/constants';
 import { Placemark } from '@root/components';
 import { useStore } from '@root/store';
 import { noop } from '@utils/helpers';
@@ -43,22 +38,22 @@ export const MapLayout = observer(() => {
     <StyledWrapper isMobileMarkerActive={markersView.isNewMobileMarkerActive}>
       <LeafletMapContainer
         center={ASHDOD_COORDINATES}
-        maxBounds={ASHDOD_MAX_BOUNDS}
         zoom={INITIAL_MAP_ZOOM}
-        minZoom={MIN_MAP_ZOOM}
         className={mapStyle}
         zoomControl={false}
       >
         <Map />
         {markersDomain.markers.length > 0 &&
-          markersDomain.markers.map(({ position, icons, address }, idx) => (
-            <Placemark
-              key={idx}
-              position={position}
-              icons={icons}
-              address={address}
-            />
-          ))}
+          markersDomain.markers.map(
+            ({ position, wasteTypes, address }, idx) => (
+              <Placemark
+                key={idx}
+                position={position}
+                icons={wasteTypes}
+                address={address}
+              />
+            )
+          )}
       </LeafletMapContainer>
     </StyledWrapper>
   );

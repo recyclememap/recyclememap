@@ -17,7 +17,7 @@ export const MARKERS_MOCK: MarkersList = [
   {
     id: 'testId',
     position: [31.806977393531774, 34.64675903320313],
-    icons: ['glass', 'paper'],
+    wasteTypes: ['glass', 'paper'],
     address: ADDRESS_NAME_MOCK,
     date: '2023-08-15T21:37:05.406Z'
   }
