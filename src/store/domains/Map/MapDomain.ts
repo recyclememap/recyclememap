@@ -1,5 +1,6 @@
 import { LatLng } from 'leaflet';
 import { observable, makeObservable, action } from 'mobx';
+import { AshdodCoordinates } from '@common/constants';
 import { RootStore } from '@root/store';
 import { loader, notify } from '@utils/decorators';
 import { MapLoaders } from './constants';
@@ -45,5 +46,14 @@ export class MapDomain {
     const displayAddress = baseAddress + houseNumber;
 
     this.setCurrentAddress(displayAddress);
+  }
+
+  checkCurrentPosition({ lat, lng }: LatLng): boolean {
+    return !(
+      lat < AshdodCoordinates.LatMin ||
+      lat > AshdodCoordinates.LatMax ||
+      lng < AshdodCoordinates.LngMin ||
+      lng > AshdodCoordinates.LngMax
+    );
   }
 }

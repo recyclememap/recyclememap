@@ -23,3 +23,10 @@ export enum WasteTypes {
   Paper = 'paper',
   Glass = 'glass'
 }
+
+export const AshdodCoordinates = {
+  LatMin: 31.752,
+  LatMax: 31.862,
+  LngMin: 34.613,
+  LngMax: 34.703
+};
