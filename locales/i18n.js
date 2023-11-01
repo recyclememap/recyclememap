@@ -4,12 +4,14 @@ import { initReactI18next } from 'react-i18next';
 import * as addMarkerDialogEnGB from './en-GB/addMarkerDialog.json';
 import * as commontEnGB from './en-GB/common.json';
 import * as iconsEnGB from './en-GB/icons.json';
+import * as mapEnGB from './en-GB/map.json';
 import * as mapDomainEnGB from './en-GB/mapDomain.json';
 import * as markerLayoutEnGB from './en-GB/markerLayout.json';
 import * as markersDomainEnGB from './en-GB/markersDomain.json';
 import * as addMarkerDialogRuRU from './ru-Ru/addMarkerDialog.json';
 import * as commontRuRU from './ru-Ru/common.json';
 import * as iconsRuRU from './ru-Ru/icons.json';
+import * as mapRuRU from './ru-Ru/map.json';
 import * as mapDomainRuRU from './ru-Ru/mapDomain.json';
 import * as markerLayoutRuRU from './ru-Ru/markerLayout.json';
 import * as markersDomainRuRU from './ru-Ru/markersDomain.json';
@@ -25,7 +27,8 @@ const resources = {
       markerLayout: markerLayoutEnGB,
       mapDomain: mapDomainEnGB,
       markersDomain: markersDomainEnGB,
-      common: commontEnGB
+      common: commontEnGB,
+      map: mapEnGB
     }
   },
   ru: {
@@ -35,7 +38,8 @@ const resources = {
       markerLayout: markerLayoutRuRU,
       mapDomain: mapDomainRuRU,
       markersDomain: markersDomainRuRU,
-      common: commontRuRU
+      common: commontRuRU,
+      map: mapRuRU
     }
   }
 };

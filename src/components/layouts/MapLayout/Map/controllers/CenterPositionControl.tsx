@@ -6,7 +6,7 @@ import { useStore } from '@root/store';
 import { debounce, noop } from '@utils/helpers';
 
 export const CenterPositionControl = observer(() => {
-  const { mapDomain, markersView: markerView } = useStore();
+  const { mapDomain, markersView } = useStore();
   const map = useMap();
 
   const getAddress = useCallback(async () => {
@@ -16,11 +16,21 @@ export const CenterPositionControl = observer(() => {
     ]);
     const latLng = map.layerPointToLatLng(containerPoint);
 
+    const isCorrectPosition = mapDomain.checkCurrentPosition(latLng);
+
+    if (!isCorrectPosition) {
+      markersView.setIsUnsupportedCoordinates(true);
+
+      return;
+    }
+
+    markersView.setIsUnsupportedCoordinates(false);
+
     await mapDomain
       .getAddress(latLng.lat, latLng.lng)
       .then(() => mapDomain.setCurrentPosition(latLng))
       .catch(noop);
-  }, [map, mapDomain]);
+  }, [map, mapDomain, markersView]);
 
   useEffect(() => {
     const debouncedMove = debounce(getAddress);
@@ -32,10 +42,10 @@ export const CenterPositionControl = observer(() => {
   }, [map, getAddress]);
 
   useEffect(() => {
-    if (markerView.isNewMobileMarkerActive) {
+    if (markersView.isNewMobileMarkerActive) {
       getAddress();
     }
-  }, [markerView.isNewMobileMarkerActive, getAddress]);
+  }, [markersView.isNewMobileMarkerActive, getAddress]);
 
   return null;
 });

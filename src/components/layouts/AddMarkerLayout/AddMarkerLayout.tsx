@@ -13,21 +13,21 @@ const FAB_DEFAULT_POSITION = 100;
 export const AddMarkerLayout = observer(() => {
   const { t } = useTranslation();
   const theme = useTheme();
-  const { markersView: markerView, mapDomain } = useStore();
+  const { markersView, mapDomain } = useStore();
 
   const closeDialogHandler = (isMobile = false) => {
     isMobile
-      ? markerView.setIsNewMobileMarkerActive(false)
-      : markerView.setIsNewMarkerDialogOpen(false);
+      ? markersView.setIsNewMobileMarkerActive(false)
+      : markersView.setIsNewMarkerDialogOpen(false);
     mapDomain.setCurrentPosition(null);
     mapDomain.setCurrentAddress(null);
   };
 
   const handleFabClick = () => {
     if (window.innerWidth > theme.breakpoints.values.md) {
-      markerView.setIsNewMarkerActive(true);
+      markersView.setIsNewMarkerActive(true);
     } else {
-      markerView.setIsNewMobileMarkerActive(true);
+      markersView.setIsNewMobileMarkerActive(true);
     }
   };
 
@@ -41,7 +41,7 @@ export const AddMarkerLayout = observer(() => {
           position: 'absolute',
           bottom: `${
             FAB_DEFAULT_POSITION +
-            (markerView.isNewMobileMarkerActive ? MOBILE_DIALOG_HEIGHT : 0)
+            (markersView.isNewMobileMarkerActive ? MOBILE_DIALOG_HEIGHT : 0)
           }px`,
           right: sizes[16].rem,
           mb: sizes[16].rem,
@@ -52,10 +52,10 @@ export const AddMarkerLayout = observer(() => {
       >
         <AddLocationIcon />
       </Fab>
-      {markerView.isNewMarkerDialogOpen && (
+      {markersView.isNewMarkerDialogOpen && (
         <AddMarkerDialog onClose={closeDialogHandler} />
       )}
-      {markerView.isNewMobileMarkerActive && (
+      {markersView.isNewMobileMarkerActive && (
         <>
           <AddMarkerDialogMobile onClose={closeDialogHandler} />
           <MobileMarker />

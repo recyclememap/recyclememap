@@ -1,11 +1,13 @@
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import type { flatIconsKeys } from '@root/components';
-import { Icon } from '@root/components';
+import { Flex, Icon } from '@root/components';
 
 type PopperProps = {
   icons: flatIconsKeys[];
   address: string;
 };
+
+const POPPER_ICONS_LENGTH = 4;
 
 export const Popper = ({ address, icons }: PopperProps) => {
   return (
@@ -13,11 +15,20 @@ export const Popper = ({ address, icons }: PopperProps) => {
       <Typography variant="h5" color="text.secondary">
         {address}
       </Typography>
-      <Box sx={{ paddingTop: '16px', display: 'flex', gap: '10px' }}>
+      <Flex
+        sx={{
+          paddingTop: '16px',
+          gap: '10px',
+          ...(icons.length > POPPER_ICONS_LENGTH && {
+            maxWidth: '270px',
+            flexWrap: 'wrap'
+          })
+        }}
+      >
         {icons.map((name) => {
           return <Icon name={name} key={name} />;
         })}
-      </Box>
+      </Flex>
     </>
   );
 };
