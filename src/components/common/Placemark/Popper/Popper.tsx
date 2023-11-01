@@ -7,6 +7,8 @@ type PopperProps = {
   address: string;
 };
 
+const POPPER_ICONS_LENGTH = 4;
+
 export const Popper = ({ address, icons }: PopperProps) => {
   return (
     <>
@@ -17,7 +19,10 @@ export const Popper = ({ address, icons }: PopperProps) => {
         sx={{
           paddingTop: '16px',
           gap: '10px',
-          ...(icons.length > 4 && { maxWidth: '270px', flexWrap: 'wrap' })
+          ...(icons.length > POPPER_ICONS_LENGTH && {
+            maxWidth: '270px',
+            flexWrap: 'wrap'
+          })
         }}
       >
         {icons.map((name) => {
