@@ -29,6 +29,8 @@ interface AddMarkerDialogMobileProps {
   onClose: (isMobile?: boolean) => void;
 }
 
+const SELECTED_WASTE_TYPES_LIMIT = 3;
+
 // TODO: refactor to use one component with two states Mobile and Desktop
 // Desktop version should be on the left of the screen
 export const AddMarkerDialogMobile = observer(
@@ -106,24 +108,29 @@ export const AddMarkerDialogMobile = observer(
                               gap: 0.5
                             }}
                           >
-                            {selected.slice(0, 3).map((value) => (
-                              <Chip
-                                key={value}
-                                label={t(`icons.${value}.title`)}
-                                onDelete={(event) => {
-                                  event.stopPropagation();
+                            {selected
+                              .slice(0, SELECTED_WASTE_TYPES_LIMIT)
+                              .map((value) => (
+                                <Chip
+                                  key={value}
+                                  label={t(`icons.${value}.title`)}
+                                  onDelete={(event) => {
+                                    event.stopPropagation();
 
-                                  const newValue = field.value.filter(
-                                    (fraction) => fraction !== value
-                                  );
-                                  field.onChange(newValue);
-                                }}
-                                onMouseDown={(event) => {
-                                  event.stopPropagation();
-                                }}
-                              />
-                            ))}
-                            {selected.length > 3 && `+${selected.length - 3}`}
+                                    const newValue = field.value.filter(
+                                      (fraction) => fraction !== value
+                                    );
+                                    field.onChange(newValue);
+                                  }}
+                                  onMouseDown={(event) => {
+                                    event.stopPropagation();
+                                  }}
+                                />
+                              ))}
+                            {selected.length > SELECTED_WASTE_TYPES_LIMIT &&
+                              `+${
+                                selected.length - SELECTED_WASTE_TYPES_LIMIT
+                              }`}
                           </Box>
                         )}
                       >
