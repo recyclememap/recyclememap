@@ -9,7 +9,9 @@ export const Marker = ({ icons }: { icons: flatIconsKeys[] }) => {
     <Box className={ringWrapper} data-testid={Marker.name}>
       <Box
         className={ring}
-        style={assignInlineVars({ [backgroundVar]: getBackground(icons) })}
+        style={assignInlineVars({
+          [backgroundVar]: getBackground(icons)
+        })}
       />
       <Box className={cutout} />
     </Box>

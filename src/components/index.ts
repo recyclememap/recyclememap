@@ -1,4 +1,5 @@
 export * from './common';
 export * from './containers';
-export * from './dialogs';
 export * from './layouts';
+export * from './hocs';
+export * from './forms';

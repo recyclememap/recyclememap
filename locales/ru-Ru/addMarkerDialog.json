@@ -1,11 +1,5 @@
 {
     "title": "Новый маркер",
-    "addressLabel": "Адрес: ",
-    "wasteTypesDescription": "Выберите один или несколько типов отходов:",
-    "wasteTypesLabel": "Типы отходов",
-    "wasteTypesError": "Выберите как минимум один",
     "description": "Новый маркер будет добавлен после проверки модератором",
-    "editButton": "Редактировать",
-    "addButton": "Добавить",
-    "cancelButton": "Отмена"
+    "addButton": "Добавить"
 }

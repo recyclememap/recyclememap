@@ -1,15 +1,19 @@
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
+import * as activeMarkerEnGB from './en-GB/activeMarker.json';
 import * as addMarkerDialogEnGB from './en-GB/addMarkerDialog.json';
 import * as commontEnGB from './en-GB/common.json';
+import * as editMarkerDialogEnGB from './en-GB/editMarkerDialog.json';
 import * as iconsEnGB from './en-GB/icons.json';
 import * as mapEnGB from './en-GB/map.json';
 import * as mapDomainEnGB from './en-GB/mapDomain.json';
 import * as markerLayoutEnGB from './en-GB/markerLayout.json';
 import * as markersDomainEnGB from './en-GB/markersDomain.json';
+import * as activeMarkerRuRU from './ru-Ru/activeMarker.json';
 import * as addMarkerDialogRuRU from './ru-Ru/addMarkerDialog.json';
 import * as commontRuRU from './ru-Ru/common.json';
+import * as editMarkerDialogRuRU from './ru-Ru/editMarkerDialog.json';
 import * as iconsRuRU from './ru-Ru/icons.json';
 import * as mapRuRU from './ru-Ru/map.json';
 import * as mapDomainRuRU from './ru-Ru/mapDomain.json';
@@ -24,22 +28,26 @@ const resources = {
     translation: {
       icons: iconsEnGB,
       addMarkerDialog: addMarkerDialogEnGB,
+      editMarkerDialog: editMarkerDialogEnGB,
       markerLayout: markerLayoutEnGB,
       mapDomain: mapDomainEnGB,
       markersDomain: markersDomainEnGB,
       common: commontEnGB,
-      map: mapEnGB
+      map: mapEnGB,
+      activeMarker: activeMarkerEnGB
     }
   },
   ru: {
     translation: {
       icons: iconsRuRU,
       addMarkerDialog: addMarkerDialogRuRU,
+      editMarkerDialog: editMarkerDialogRuRU,
       markerLayout: markerLayoutRuRU,
       mapDomain: mapDomainRuRU,
       markersDomain: markersDomainRuRU,
       common: commontRuRU,
-      map: mapRuRU
+      map: mapRuRU,
+      activeMarker: activeMarkerRuRU
     }
   }
 };

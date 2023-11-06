@@ -1,7 +1,7 @@
 import { makeObservable, action, observable, runInAction } from 'mobx';
 import { NotificationModel } from './types';
 
-const NOTIFICATION_TIMEOUT = 10000;
+const NOTIFICATION_TIMEOUT = 4000;
 
 export class Notification {
   currentNotification: NotificationModel | null = null;

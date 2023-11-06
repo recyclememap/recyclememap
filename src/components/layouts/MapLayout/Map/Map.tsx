@@ -2,14 +2,22 @@ import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TileLayer, ZoomControl, useMap, useMapEvents } from 'react-leaflet';
-import { MAX_MAP_ZOOM } from '@common/constants';
+import { MAX_MAP_ZOOM, MarkerState } from '@common/constants';
 import AddLocationIcon from '@components/common/Icon/assets/addLocation.svg';
 import { useStore } from '@root/store';
+import { MapLoaders } from '@root/store/domains';
 import { NotificationType } from '@root/store/domains/Notification/types';
 import { CenterPositionControl } from './controllers/CenterPositionControl';
 
 export const Map = observer(() => {
-  const { mapDomain, markersView, notification } = useStore();
+  const {
+    mapDomain,
+    markersDomain,
+    markersView,
+    sidebarView,
+    notification,
+    loader
+  } = useStore();
   const { t } = useTranslation();
   const map = useMap();
 
@@ -28,16 +36,34 @@ export const Map = observer(() => {
           return;
         }
 
-        markersView.setIsNewMarkerDialogOpen(true);
+        loader.setLoader(MapLoaders.GetAddress);
+
+        sidebarView.setIsOpen(true);
         markersView.setIsNewMarkerActive(false);
 
         await mapDomain
           .getAddress(event.latlng.lat, event.latlng.lng)
-          .catch(() => markersView.setIsNewMarkerDialogOpen(false));
+          .catch(() => markersView.setState(null));
 
         if (mapDomain.currentAddress) {
           mapDomain.setCurrentPosition(event.latlng);
         }
+
+        if (
+          markersView.state === MarkerState.Edit &&
+          mapDomain.currentAddress &&
+          mapDomain.currentPosition
+        ) {
+          markersDomain.updateSuggestion({
+            address: mapDomain.currentAddress,
+            position: [
+              mapDomain.currentPosition.lat,
+              mapDomain.currentPosition.lng
+            ]
+          });
+        }
+
+        loader.deleteLoader(MapLoaders.GetAddress);
       }
     }
   });
