@@ -15,6 +15,10 @@ global.beforeEach(() => {
   (global as any).apiMock = apiMock;
 });
 
+jest.mock('@common/env', () => ({
+  API_URL: 'http://127.0.0.1:3100'
+}));
+
 global.afterEach(() => {
   nock.cleanAll();
   jest.clearAllMocks();
