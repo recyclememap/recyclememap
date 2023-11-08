@@ -4,6 +4,10 @@ import '@testing-library/jest-dom';
 
 global.TextEncoder = TextEncoder;
 
+jest.mock('@common/env', () => ({
+  API_URL: 'http://127.0.0.1:3100'
+}));
+
 global.beforeEach(() => {
   const apiMock = nock('http://127.0.0.1:3100/api');
 
@@ -14,10 +18,6 @@ global.beforeEach(() => {
 
   (global as any).apiMock = apiMock;
 });
-
-jest.mock('@common/env', () => ({
-  API_URL: 'http://127.0.0.1:3100'
-}));
 
 global.afterEach(() => {
   nock.cleanAll();
