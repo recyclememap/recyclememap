@@ -9,6 +9,6 @@ export const nominatimApi = axios.create({
 
 // We use withCredentials because right now website and backend are served on diffrenet domains.
 export const api = axios.create({
-  baseURL: 'http://127.0.0.1:3100/api',
+  baseURL: `${import.meta.env.VITE_API_URL}/api`,
   withCredentials: true
 });
