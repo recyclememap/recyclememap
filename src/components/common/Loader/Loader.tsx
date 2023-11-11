@@ -11,7 +11,7 @@ export const Loader = ({ height }: LoaderProps) => {
       sx={{
         alignItems: 'center',
         justifyContent: 'center',
-        height: height ? height : '100%'
+        height: height ?? '100%'
       }}
     >
       <CircularProgress />
