@@ -2,8 +2,7 @@ import { LatLng } from 'leaflet';
 import { observable, makeObservable, action } from 'mobx';
 import { AshdodCoordinates } from '@common/constants';
 import { RootStore } from '@root/store';
-import { loader, notify } from '@utils/decorators';
-import { MapLoaders } from './constants';
+import { notify } from '@utils/decorators';
 import { mapApi } from './requests';
 
 export class MapDomain {
@@ -34,11 +33,19 @@ export class MapDomain {
     message: 'common.errorTitle',
     details: 'mapDomain.getAddressErrorMessage'
   })
-  @loader(MapLoaders.GetAddress)
   async getAddress(lat: number, lon: number): Promise<void> {
-    const { address } = await mapApi.getAddress({
-      params: { lat, lon }
-    });
+    let address;
+
+    try {
+      const data = await mapApi.getAddress({
+        params: { lat, lon }
+      });
+
+      address = data.address;
+    } catch (e) {
+      this.setCurrentAddress(null);
+      throw e;
+    }
 
     const baseAddress = address.road || address.city || address.country;
     const houseNumber =

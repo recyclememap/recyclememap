@@ -1,3 +1,9 @@
 {
-    "errorTitle": "Ошибка"
+    "errorTitle": "Ошибка",
+    "editButton": "Редактировать",
+    "addressLabel": "Адрес: ",
+    "cancelButton": "Отмена",
+    "wasteTypesDescription": "Выберите один или несколько типов отходов:",
+    "wasteTypesLabel": "Типы отходов",
+    "wasteTypesError": "Выберите как минимум один"
 }

@@ -1,7 +1,5 @@
-import { ReactNode } from 'react';
-
 export type GenericObject = Record<string, any>;
 
-export type ChildrenProp = { children?: ReactNode };
-
-export type PropsWithChildren<P> = P & ChildrenProp;
+export type MakePartial<T> = {
+  [K in keyof T]?: Partial<T[K]>;
+};

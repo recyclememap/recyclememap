@@ -1,5 +1,5 @@
 import { Loader, Notification, MapDomain, MarkersDomain } from './domains';
-import { MarkersView } from './views';
+import { MarkersView, SidebarView } from './views';
 
 export interface IRootStore {
   loader: Loader;
@@ -7,6 +7,7 @@ export interface IRootStore {
   mapDomain: MapDomain;
   markersDomain: MarkersDomain;
   markersView: MarkersView;
+  sidebarView: SidebarView;
 }
 
 export class RootStore implements IRootStore {
@@ -15,6 +16,7 @@ export class RootStore implements IRootStore {
   mapDomain: MapDomain;
   markersDomain: MarkersDomain;
   markersView: MarkersView;
+  sidebarView: SidebarView;
 
   constructor() {
     this.loader = new Loader();
@@ -22,5 +24,6 @@ export class RootStore implements IRootStore {
     this.mapDomain = new MapDomain(this);
     this.markersDomain = new MarkersDomain(this);
     this.markersView = new MarkersView();
+    this.sidebarView = new SidebarView();
   }
 }

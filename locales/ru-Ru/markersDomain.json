@@ -1,5 +1,7 @@
 {
     "addNewMarkerErrorMessage": "Не удалось добавить новый маркер",
+    "updateMarkerErrorMessage": "Не удалось обновить маркер",
     "getMarkersErrorMessage": "Не удалось загрузить маркеры",
-    "addNewMarkerSuccessMessage": "Новый маркер отправлен модераторам"
+    "addNewMarkerSuccessMessage": "Новый маркер отправлен модераторам",
+    "updateMarkerSuccessMessage": "Предложение отправлено модераторам"
 }

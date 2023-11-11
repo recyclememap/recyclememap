@@ -49,9 +49,9 @@ export const theme = createTheme({
     h2: {
       margin: 0,
       fontWeight: 500,
-      fontSize: sizes[20].rem,
+      fontSize: sizes[24].rem,
       textAlign: 'center',
-      padding: sizes[8].rem
+      padding: `${sizes[8].rem} 0`
     },
     caption: {
       margin: `${sizes[8].rem} 0`,
@@ -139,6 +139,7 @@ export const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         body: {
+          overflow: 'hidden',
           backgroundColor: '#F3F6F9',
           color: '#1C2025',
           height: '100vh'

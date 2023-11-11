@@ -1,17 +1,20 @@
 import { CircularProgress } from '@mui/material';
-import { forwardRef } from 'react';
 import { Flex } from '@root/components';
 
-export const Loader = forwardRef(() => {
+interface LoaderProps {
+  height?: string;
+}
+
+export const Loader = ({ height }: LoaderProps) => {
   return (
     <Flex
       sx={{
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100%'
+        height: height ?? '100%'
       }}
     >
       <CircularProgress />
     </Flex>
   );
-});
+};

@@ -1,26 +1,24 @@
 import { observable, makeObservable, action } from 'mobx';
+import { MarkerState } from '@common/constants';
 
 export class MarkersView {
-  isNewMarkerDialogOpen = false;
+  state: MarkerState | null = null;
   isNewMarkerActive = false;
   isNewMobileMarkerActive = false;
   isUnsupportedCoordinates = false;
 
   constructor() {
     makeObservable(this, {
-      isNewMarkerDialogOpen: observable,
+      state: observable,
+
       isNewMarkerActive: observable,
       isNewMobileMarkerActive: observable,
       isUnsupportedCoordinates: observable,
+      setState: action,
       setIsNewMarkerActive: action,
       setIsNewMobileMarkerActive: action,
-      setIsNewMarkerDialogOpen: action,
       setIsUnsupportedCoordinates: action
     });
-  }
-
-  setIsNewMarkerDialogOpen(state: boolean): void {
-    this.isNewMarkerDialogOpen = state;
   }
 
   setIsNewMarkerActive(state: boolean): void {
@@ -31,7 +29,11 @@ export class MarkersView {
     this.isNewMobileMarkerActive = state;
   }
 
-  setIsUnsupportedCoordinates(value: boolean) {
-    this.isUnsupportedCoordinates = value;
+  setIsUnsupportedCoordinates(state: boolean) {
+    this.isUnsupportedCoordinates = state;
+  }
+
+  setState(state: MarkerState | null): void {
+    this.state = state;
   }
 }

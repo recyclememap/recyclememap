@@ -1,3 +1,9 @@
 {
-    "errorTitle": "Error"
+    "errorTitle": "Error",
+    "editButton": "Edit",
+    "addressLabel": "Address: ",
+    "cancelButton": "Cancel",
+    "wasteTypesDescription": "Select one or more types of waste:",
+    "wasteTypesLabel": "Types of waste",
+    "wasteTypesError": "Select at least one"
 }
