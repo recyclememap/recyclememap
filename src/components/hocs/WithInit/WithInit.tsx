@@ -10,14 +10,14 @@ import { sizes } from '@root/theme';
 export const withInit = (
   domain: keyof IRootStore,
   Children: FunctionComponent
-) =>
-  observer(({ ...props }: any) => {
+) => {
+  const ObserverChildren = observer(Children);
+
+  return observer(({ ...props }: any) => {
     const { t } = useTranslation();
     const stores = useStore();
     const [isLoading, setIsLoading] = useState(true);
     const [showServerStartMessage, setShowServerStartMessage] = useState(false);
-
-    const ObserverChildren = observer(Children);
 
     useEffect(() => {
       const init = async () => {
@@ -68,3 +68,4 @@ export const withInit = (
       <ObserverChildren {...props} />
     );
   });
+};
