@@ -26,10 +26,20 @@ export const ActiveMarker = observer(() => {
           flexDirection: 'column',
           alignItems: 'flex-start',
           gap: sizes[16].rem,
-          width: '100%'
+          width: '100%',
+          height: '100%'
         }}
       >
-        <Typography variant="h2" sx={{ p: 0 }}>
+        <Typography
+          variant="h2"
+          align="left"
+          sx={{
+            width: '90%',
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis'
+          }}
+        >
           {t('common.addressLabel')}
           {activeMarker.address}
         </Typography>
@@ -45,7 +55,10 @@ export const ActiveMarker = observer(() => {
           {t('activeMarker.dateLabel')}
           {new Date(activeMarker.date).toLocaleDateString()}
         </Typography>
-        <Button sx={{ alignSelf: 'flex-end' }} onClick={onEditClick}>
+        <Button
+          sx={{ alignSelf: 'flex-end', mt: 'auto' }}
+          onClick={onEditClick}
+        >
           {t('common.editButton')}
         </Button>
       </Flex>

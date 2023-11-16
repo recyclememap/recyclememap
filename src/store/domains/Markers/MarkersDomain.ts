@@ -1,6 +1,7 @@
 import { observable, makeObservable, action } from 'mobx';
 import { RootStore } from '@root/store';
 import { loader, notify } from '@utils/decorators';
+import { noop } from '@utils/helpers';
 import { MarkersLoaders } from './constants';
 import { markersApi } from './requests';
 import {
@@ -14,6 +15,7 @@ import {
 
 export class MarkersDomain {
   private rootStore: RootStore;
+  retryCount = 4;
   markers: MarkersList = [];
   suggestionMarker: Marker | null = null;
   activeMarker: Marker | null = null;
@@ -49,7 +51,22 @@ export class MarkersDomain {
   })
   @loader(MarkersLoaders.GetMarkers)
   async getMarkers(): Promise<void> {
-    const markers = await markersApi.getMarkers();
+    let markers: MarkersList;
+
+    // Temporary solution since server is spinning down without receiving inbound traffic
+    try {
+      markers = await markersApi.getMarkers();
+    } catch (e) {
+      if (this.retryCount > 0) {
+        this.retryCount--;
+
+        await this.getMarkers();
+
+        return;
+      }
+
+      throw e;
+    }
 
     this.setMarkers(markers);
   }
@@ -126,5 +143,9 @@ export class MarkersDomain {
       ...this.suggestionMarker,
       ...suggestion
     } as Marker);
+  }
+
+  async init(): Promise<void> {
+    await this.getMarkers().catch(noop);
   }
 }
