@@ -31,6 +31,7 @@ export const withInit = (
       init();
 
       const timer = setTimeout(() => setShowServerStartMessage(true), 2000);
+
       return () => clearTimeout(timer);
       // eslint-disable-next-line
   }, []);
