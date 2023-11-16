@@ -18,6 +18,7 @@ export const Popper = ({ address, icons }: PopperProps) => {
       <Flex
         sx={{
           paddingTop: '16px',
+          minWidth: '150px',
           gap: '10px',
           ...(icons.length > POPPER_ICONS_LENGTH && {
             maxWidth: '270px',
