@@ -1,5 +1,5 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { Slide } from '@mui/material';
+import { Slide, useMediaQuery, useTheme } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { MarkerState } from '@common/constants';
 import { LoadingContainer } from '@components/containers';
@@ -12,10 +12,14 @@ import { StyledSidebar } from './styled';
 
 export const Sidebar = observer(() => {
   const { sidebarView, markersView, loader } = useStore();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const onClose = () => {
     sidebarView.setIsOpen(false);
-    setTimeout(() => markersView.setState(null), 200);
+    isMobile
+      ? markersView.setState(null)
+      : setTimeout(() => markersView.setState(null), 200);
   };
 
   const getContent = () => {
@@ -35,7 +39,7 @@ export const Sidebar = observer(() => {
         return (
           <LoadingContainer
             isLoading={loader.isLoading(MapLoaders.GetAddress)}
-            height="290px"
+            height="265px"
           >
             <NewMarkerForm onClose={onClose} />
           </LoadingContainer>

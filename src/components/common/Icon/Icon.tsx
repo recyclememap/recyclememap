@@ -4,8 +4,8 @@ import { flatIcons } from './FlatIcons';
 import type { flatIconsKeys } from './FlatIcons';
 
 const sizes = {
-  m: { width: '45px', padding: '15px' },
-  s: { width: '40px', padding: '8px' }
+  m: { size: '45px', padding: '15px' },
+  s: { size: '40px', padding: '8px' }
 };
 
 type IconProps = {
@@ -22,7 +22,8 @@ const IconEl = styled('img')(({ iconBgColor, sizeName }: IIconEl) => ({
   borderRadius: '50%',
   overflow: 'visible',
   padding: sizes[sizeName].padding,
-  width: sizes[sizeName].width
+  width: sizes[sizeName].size,
+  height: sizes[sizeName].size
 }));
 
 export const Icon = ({ name }: IconProps) => {

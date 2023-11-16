@@ -5,10 +5,11 @@ import {
   MarkerHandler,
   MobileHandler,
   Sidebar,
-  MobileSidebar
+  MobileSidebar,
+  withInit
 } from '@root/components';
 
-const HomePage = () => {
+const HomePage = withInit('markersDomain', () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -21,6 +22,6 @@ const HomePage = () => {
       </MarkerHandler>
     </MobileHandler>
   );
-};
+});
 
 export default HomePage;

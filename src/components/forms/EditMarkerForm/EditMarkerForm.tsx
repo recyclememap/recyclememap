@@ -77,113 +77,115 @@ export const EditMarkerForm = observer(({ onClose }: EditMarkerFormProps) => {
   }, [markersDomain.activeMarker, markersDomain.suggestionMarker]);
 
   return (
-    <form onSubmit={handleSubmit(updateMarker)}>
-      <DialogTitle textAlign="center">
-        {t('editMarkerDialog.title')}
-      </DialogTitle>
-      <DialogContent sx={{ p: 0 }}>
-        <Flex sx={{ alignItems: 'center', gap: sizes[8].rem }}>
-          {t('common.addressLabel')}
-          {markersDomain.suggestionMarker?.address}
-          <IconButton
-            onClick={editHandler}
-            size="small"
-            title={t('common.editButton')}
+    <Box sx={{ width: '100%' }}>
+      <form onSubmit={handleSubmit(updateMarker)}>
+        <DialogTitle textAlign="center">
+          {t('editMarkerDialog.title')}
+        </DialogTitle>
+        <DialogContent sx={{ p: 0 }}>
+          <Flex sx={{ alignItems: 'center', gap: sizes[8].rem }}>
+            {t('common.addressLabel')}
+            {markersDomain.suggestionMarker?.address}
+            <IconButton
+              onClick={editHandler}
+              size="small"
+              title={t('common.editButton')}
+            >
+              <EditIcon fontSize="inherit" />
+            </IconButton>
+          </Flex>
+          <DialogContentText sx={{ display: 'flex', mt: 1 }}>
+            {t('common.wasteTypesDescription')}
+          </DialogContentText>
+          <FormControl
+            variant="standard"
+            sx={{ display: 'flex', mb: 2 }}
+            error={!!errors.wasteTypes}
           >
-            <EditIcon fontSize="inherit" />
-          </IconButton>
-        </Flex>
-        <DialogContentText sx={{ display: 'flex', mt: 1 }}>
-          {t('common.wasteTypesDescription')}
-        </DialogContentText>
-        <FormControl
-          variant="standard"
-          sx={{ display: 'flex', mb: 2 }}
-          error={!!errors.wasteTypes}
-        >
-          <InputLabel id="waste-types-select">
-            {t('common.wasteTypesLabel')}
-          </InputLabel>
-          <Controller
-            name="wasteTypes"
-            control={control}
-            defaultValue={[]}
-            rules={{ required: t('common.wasteTypesError') }}
-            render={({ field }) => (
-              <Select
-                {...field}
-                labelId="waste-types-select"
-                id="waste-types-select"
-                multiple
-                fullWidth
-                value={field.value}
-                onChange={field.onChange}
-                renderValue={(selected) => (
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 0.5
-                    }}
-                  >
-                    {selected
-                      .slice(0, SELECTED_WASTE_TYPES_LIMIT)
-                      .map((value) => (
-                        <Chip
-                          key={value}
-                          label={t(`icons.${value}.title`)}
-                          onDelete={(event) => {
-                            event.stopPropagation();
+            <InputLabel id="waste-types-select">
+              {t('common.wasteTypesLabel')}
+            </InputLabel>
+            <Controller
+              name="wasteTypes"
+              control={control}
+              defaultValue={[]}
+              rules={{ required: t('common.wasteTypesError') }}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  labelId="waste-types-select"
+                  id="waste-types-select"
+                  multiple
+                  fullWidth
+                  value={field.value}
+                  onChange={field.onChange}
+                  renderValue={(selected) => (
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 0.5
+                      }}
+                    >
+                      {selected
+                        .slice(0, SELECTED_WASTE_TYPES_LIMIT)
+                        .map((value) => (
+                          <Chip
+                            key={value}
+                            label={t(`icons.${value}.title`)}
+                            onDelete={(event) => {
+                              event.stopPropagation();
 
-                            const newValue = field.value.filter(
-                              (fraction) => fraction !== value
-                            );
-                            field.onChange(newValue);
-                          }}
-                          onMouseDown={(event) => {
-                            event.stopPropagation();
-                          }}
-                        />
-                      ))}
-                    {selected.length > SELECTED_WASTE_TYPES_LIMIT &&
-                      `+${selected.length - SELECTED_WASTE_TYPES_LIMIT}`}
-                  </Box>
-                )}
-              >
-                {Object.values(WasteTypes).map((name) => (
-                  <MenuItem key={name} value={name}>
-                    <Flex sx={{ alignItems: 'center', gap: '8px' }}>
-                      <Icon name={name} key={name} />
-                      {t(`icons.${name}.title`)}
-                    </Flex>
-                  </MenuItem>
-                ))}
-              </Select>
+                              const newValue = field.value.filter(
+                                (fraction) => fraction !== value
+                              );
+                              field.onChange(newValue);
+                            }}
+                            onMouseDown={(event) => {
+                              event.stopPropagation();
+                            }}
+                          />
+                        ))}
+                      {selected.length > SELECTED_WASTE_TYPES_LIMIT &&
+                        `+${selected.length - SELECTED_WASTE_TYPES_LIMIT}`}
+                    </Box>
+                  )}
+                >
+                  {Object.values(WasteTypes).map((name) => (
+                    <MenuItem key={name} value={name}>
+                      <Flex sx={{ alignItems: 'center', gap: '8px' }}>
+                        <Icon name={name} key={name} />
+                        {t(`icons.${name}.title`)}
+                      </Flex>
+                    </MenuItem>
+                  ))}
+                </Select>
+              )}
+            />
+            {errors.wasteTypes && (
+              <FormHelperText>{errors.wasteTypes.message}</FormHelperText>
             )}
-          />
-          {errors.wasteTypes && (
-            <FormHelperText>{errors.wasteTypes.message}</FormHelperText>
-          )}
-        </FormControl>
-        <DialogContentText sx={{ mt: sizes[8].rem }}>
-          {t('editMarkerDialog.description')}
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <LoadingButton
-          disabled={!!errors.wasteTypes || (!isDirty && isPositionSame)}
-          loading={loader.isLoading(MarkersLoaders.UpdateMarker)}
-          type="submit"
-        >
-          {t('editMarkerDialog.updateButton')}
-        </LoadingButton>
-        <Button
-          disabled={loader.isLoading(MarkersLoaders.UpdateMarker)}
-          onClick={() => onClose()}
-        >
-          {t('common.cancelButton')}
-        </Button>
-      </DialogActions>
-    </form>
+          </FormControl>
+          <DialogContentText sx={{ mt: sizes[8].rem }}>
+            {t('editMarkerDialog.description')}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <LoadingButton
+            disabled={!!errors.wasteTypes || (!isDirty && isPositionSame)}
+            loading={loader.isLoading(MarkersLoaders.UpdateMarker)}
+            type="submit"
+          >
+            {t('editMarkerDialog.updateButton')}
+          </LoadingButton>
+          <Button
+            disabled={loader.isLoading(MarkersLoaders.UpdateMarker)}
+            onClick={() => onClose()}
+          >
+            {t('common.cancelButton')}
+          </Button>
+        </DialogActions>
+      </form>
+    </Box>
   );
 });

@@ -5,6 +5,7 @@ import * as activeMarkerEnGB from './en-GB/activeMarker.json';
 import * as addMarkerDialogEnGB from './en-GB/addMarkerDialog.json';
 import * as commontEnGB from './en-GB/common.json';
 import * as editMarkerDialogEnGB from './en-GB/editMarkerDialog.json';
+import * as homePageEnGB from './en-GB/homePage.json';
 import * as iconsEnGB from './en-GB/icons.json';
 import * as mapEnGB from './en-GB/map.json';
 import * as mapDomainEnGB from './en-GB/mapDomain.json';
@@ -14,11 +15,14 @@ import * as activeMarkerRuRU from './ru-Ru/activeMarker.json';
 import * as addMarkerDialogRuRU from './ru-Ru/addMarkerDialog.json';
 import * as commontRuRU from './ru-Ru/common.json';
 import * as editMarkerDialogRuRU from './ru-Ru/editMarkerDialog.json';
+import * as homePageRuRU from './ru-Ru/homePage.json';
 import * as iconsRuRU from './ru-Ru/icons.json';
 import * as mapRuRU from './ru-Ru/map.json';
 import * as mapDomainRuRU from './ru-Ru/mapDomain.json';
 import * as markerLayoutRuRU from './ru-Ru/markerLayout.json';
 import * as markersDomainRuRU from './ru-Ru/markersDomain.json';
+
+const DEFAULT_LANGUAGE = 'en-GB';
 
 // the translations
 // (tip move them in a JSON file and import them,
@@ -34,7 +38,8 @@ const resources = {
       markersDomain: markersDomainEnGB,
       common: commontEnGB,
       map: mapEnGB,
-      activeMarker: activeMarkerEnGB
+      activeMarker: activeMarkerEnGB,
+      homePage: homePageEnGB
     }
   },
   ru: {
@@ -47,7 +52,8 @@ const resources = {
       markersDomain: markersDomainRuRU,
       common: commontRuRU,
       map: mapRuRU,
-      activeMarker: activeMarkerRuRU
+      activeMarker: activeMarkerRuRU,
+      homePage: homePageRuRU
     }
   }
 };
@@ -57,7 +63,7 @@ i18n
   .use(LanguageDetector)
   .init({
     debug: true,
-    lng: 'ru',
+    lng: window.navigator.language ?? DEFAULT_LANGUAGE,
     resources,
 
     interpolation: {
