@@ -39,7 +39,7 @@ export const Sidebar = observer(() => {
         return (
           <LoadingContainer
             isLoading={loader.isLoading(MapLoaders.GetAddress)}
-            height="290px"
+            height="265px"
           >
             <NewMarkerForm onClose={onClose} />
           </LoadingContainer>
