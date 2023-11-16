@@ -22,7 +22,7 @@ import * as mapDomainRuRU from './ru-Ru/mapDomain.json';
 import * as markerLayoutRuRU from './ru-Ru/markerLayout.json';
 import * as markersDomainRuRU from './ru-Ru/markersDomain.json';
 
-const DEFAULT_LANGUAGE = 'en-GB';
+const DEFAULT_LANGUAGE = 'en';
 
 // the translations
 // (tip move them in a JSON file and import them,
@@ -63,8 +63,8 @@ i18n
   .use(LanguageDetector)
   .init({
     debug: true,
-    lng: window.navigator.language ?? DEFAULT_LANGUAGE,
     resources,
+    fallbackLng: DEFAULT_LANGUAGE,
 
     interpolation: {
       escapeValue: false // react already safes from xss
