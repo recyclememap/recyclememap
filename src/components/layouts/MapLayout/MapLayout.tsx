@@ -1,12 +1,10 @@
 import { useMediaQuery, useTheme } from '@mui/material';
 import { observer } from 'mobx-react-lite';
-import { MapContainer as LeafletMapContainer } from 'react-leaflet';
 import { ASHDOD_COORDINATES, INITIAL_MAP_ZOOM } from '@common/constants';
 import { Placemark } from '@root/components';
 import { useStore } from '@root/store';
-import { mapStyle } from './map.css';
 import { Map } from './Map/Map';
-import { StyledWrapper } from './styled';
+import { StyledWrapper, MapContainer } from './styled';
 
 export const MapLayout = observer(() => {
   const { sidebarView, markersDomain } = useStore();
@@ -15,10 +13,9 @@ export const MapLayout = observer(() => {
 
   return (
     <StyledWrapper isSidebarOpen={sidebarView.isOpen && isMobile}>
-      <LeafletMapContainer
+      <MapContainer
         center={ASHDOD_COORDINATES}
         zoom={INITIAL_MAP_ZOOM}
-        className={mapStyle}
         zoomControl={false}
       >
         <Map />
@@ -26,7 +23,7 @@ export const MapLayout = observer(() => {
           markersDomain.markers.map((marker, idx) => (
             <Placemark key={idx} marker={marker} />
           ))}
-      </LeafletMapContainer>
+      </MapContainer>
     </StyledWrapper>
   );
 });
