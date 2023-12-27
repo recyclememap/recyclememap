@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import { MapContainer as LeafletMapContainer } from 'react-leaflet';
 import { MOBILE_SIDEBAR_HEIGHT } from '@common/constants';
 import { sizes } from '@root/theme';
 
@@ -9,6 +10,9 @@ interface StyledWrapperProps {
 // TODO: Create custom zoom controller instead
 export const StyledWrapper = styled('div')(
   ({ isSidebarOpen }: StyledWrapperProps) => ({
+    '& .leaflet-bottom': {
+      position: 'fixed'
+    },
     '& .leaflet-control-zoom': {
       border: 'none',
       marginRight: sizes[24].rem,
@@ -29,3 +33,7 @@ export const StyledWrapper = styled('div')(
     }
   })
 );
+
+export const MapContainer = styled(LeafletMapContainer)({
+  height: '100vh'
+});
