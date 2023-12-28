@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import { Loader } from '@components/common';
 import { Flex } from '@components/containers';
 import { IRootStore, useStore } from '@root/store';
-import { sizes } from '@root/theme';
 
 export const withInit = (
   domain: keyof IRootStore,
@@ -40,11 +39,10 @@ export const withInit = (
       // Temporary solution since server is spinning down without receiving inbound traffic
       <Flex
         sx={{
+          position: 'relative',
           height: '100%',
           flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: sizes[16].px
+          alignItems: 'center'
         }}
       >
         <Loader />
