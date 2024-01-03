@@ -13,10 +13,11 @@ import { StyledSidebar } from './styled';
 
 export const MobileSidebar = observer(() => {
   const { t } = useTranslation();
-  const { markersView, sidebarView, loader } = useStore();
+  const { markersView, sidebarView, markersDomain, loader } = useStore();
 
   const onClose = () => {
     sidebarView.setIsOpen(false);
+    markersDomain.setSuggestionMarker(null);
     markersView.setState(null);
     markersView.setIsNewMobileMarkerActive(false);
   };

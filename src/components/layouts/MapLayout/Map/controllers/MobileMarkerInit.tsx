@@ -1,12 +1,12 @@
 import { observer } from 'mobx-react-lite';
 import { useCallback, useEffect } from 'react';
 import { useMap } from 'react-leaflet';
-import { MOBILE_SIDEBAR_HEIGHT, MarkerState } from '@common/constants';
+import { MOBILE_SIDEBAR_HEIGHT } from '@common/constants';
 import { useStore } from '@root/store';
 import { MapLoaders } from '@root/store/domains';
 import { debounce, noop } from '@utils/helpers';
 
-export const CenterPositionControl = observer(() => {
+export const MobileMarkerInit = observer(() => {
   const { mapDomain, markersView, markersDomain, loader } = useStore();
   const map = useMap();
 
@@ -29,19 +29,12 @@ export const CenterPositionControl = observer(() => {
 
     loader.setLoader(MapLoaders.GetAddress);
 
-    await mapDomain
-      .getAddress(latLng.lat, latLng.lng)
-      .then(() => mapDomain.setCurrentPosition(latLng))
-      .catch(noop);
+    await mapDomain.getAddress(latLng.lat, latLng.lng).catch(noop);
 
-    if (
-      markersView.state === MarkerState.Edit &&
-      mapDomain.currentAddress &&
-      mapDomain.currentPosition
-    ) {
+    if (mapDomain.currentAddress) {
       markersDomain.updateSuggestion({
         address: mapDomain.currentAddress,
-        position: [mapDomain.currentPosition.lat, mapDomain.currentPosition.lng]
+        position: [latLng.lat, latLng.lng]
       });
     }
 
@@ -58,10 +51,9 @@ export const CenterPositionControl = observer(() => {
   }, [map, getAddress]);
 
   useEffect(() => {
-    if (markersView.isNewMobileMarkerActive) {
-      getAddress();
-    }
-  }, [markersView.isNewMobileMarkerActive, getAddress]);
+    getAddress();
+    // eslint-disable-next-line
+  }, []);
 
   return null;
 });

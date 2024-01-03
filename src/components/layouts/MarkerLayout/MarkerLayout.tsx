@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { MOBILE_SIDEBAR_HEIGHT, MarkerState } from '@common/constants';
 import { useStore } from '@root/store';
 import { sizes } from '@root/theme';
+import { useEscape } from '@utils/hooks';
 import { MobileMarker } from './MobileMarker/MobileMarker';
 
 const FAB_DEFAULT_POSITION = 100;
@@ -12,8 +13,18 @@ const FAB_DEFAULT_POSITION = 100;
 export const MarkerLayout = observer(() => {
   const { t } = useTranslation();
   const theme = useTheme();
-  const { markersView, sidebarView } = useStore();
+  const { markersView, markersDomain, sidebarView } = useStore();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+  const handleEscape = () => {
+    if (markersView.isNewMarkerActive) {
+      markersView.setIsNewMarkerActive(false);
+      markersView.setState(null);
+      markersDomain.setSuggestionMarker(null);
+    }
+  };
+
+  useEscape(handleEscape);
 
   const handleFabClick = () => {
     if (!isMobile) {

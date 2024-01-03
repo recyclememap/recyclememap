@@ -2,12 +2,12 @@ import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TileLayer, ZoomControl, useMap, useMapEvents } from 'react-leaflet';
-import { MAX_MAP_ZOOM, MarkerState } from '@common/constants';
+import { MAX_MAP_ZOOM } from '@common/constants';
 import AddLocationIcon from '@components/common/Icon/assets/addLocation.svg';
 import { useStore } from '@root/store';
 import { MapLoaders } from '@root/store/domains';
 import { NotificationType } from '@root/store/domains/Notification/types';
-import { CenterPositionControl } from './controllers/CenterPositionControl';
+import { MobileMarkerInit } from './controllers/MobileMarkerInit';
 
 export const Map = observer(() => {
   const {
@@ -46,20 +46,9 @@ export const Map = observer(() => {
           .catch(() => markersView.setState(null));
 
         if (mapDomain.currentAddress) {
-          mapDomain.setCurrentPosition(event.latlng);
-        }
-
-        if (
-          markersView.state === MarkerState.Edit &&
-          mapDomain.currentAddress &&
-          mapDomain.currentPosition
-        ) {
           markersDomain.updateSuggestion({
             address: mapDomain.currentAddress,
-            position: [
-              mapDomain.currentPosition.lat,
-              mapDomain.currentPosition.lng
-            ]
+            position: [event.latlng.lat, event.latlng.lng]
           });
         }
 
@@ -81,7 +70,7 @@ export const Map = observer(() => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <ZoomControl position="bottomright" />
-      {markersView.isNewMobileMarkerActive && <CenterPositionControl />}
+      {markersView.isNewMobileMarkerActive && <MobileMarkerInit />}
     </>
   );
 });

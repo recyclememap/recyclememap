@@ -7,7 +7,6 @@ import { markersApi } from './requests';
 import {
   Marker,
   MarkersList,
-  MarkerFormFields,
   SuggestedMarker,
   MarkerProperties,
   SuggestedProperties
@@ -81,17 +80,16 @@ export class MarkersDomain {
     }
   )
   @loader(MarkersLoaders.AddNewMarker)
-  async addNewMarker({ wasteTypes }: MarkerFormFields): Promise<void> {
+  async addNewMarker(): Promise<void> {
     if (
-      this.rootStore.mapDomain.currentPosition &&
-      this.rootStore.mapDomain.currentAddress
+      this.suggestionMarker?.position &&
+      this.suggestionMarker?.address &&
+      this.suggestionMarker?.wasteTypes
     ) {
-      const { lat, lng } = this.rootStore.mapDomain.currentPosition;
-
       await markersApi.addNewMarker({
-        position: [lat, lng],
-        address: this.rootStore.mapDomain.currentAddress,
-        wasteTypes
+        position: this.suggestionMarker.position,
+        address: this.suggestionMarker.address,
+        wasteTypes: this.suggestionMarker.wasteTypes
       });
     } else {
       throw new Error();

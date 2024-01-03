@@ -61,9 +61,7 @@ export const EditMarkerForm = observer(({ onClose }: EditMarkerFormProps) => {
     markersView.setIsNewMarkerActive(true);
   };
 
-  const updateMarker = async ({ wasteTypes }: MarkerFormFields) => {
-    markersDomain.updateSuggestion({ wasteTypes });
-
+  const updateMarker = async () => {
     await markersDomain
       .updateMarker()
       .then(() => onClose())
@@ -118,7 +116,13 @@ export const EditMarkerForm = observer(({ onClose }: EditMarkerFormProps) => {
                   multiple
                   fullWidth
                   value={field.value}
-                  onChange={field.onChange}
+                  onChange={(event) => {
+                    markersDomain.updateSuggestion({
+                      wasteTypes: event.target.value as WasteTypes[]
+                    });
+
+                    field.onChange(event);
+                  }}
                   renderValue={(selected) => (
                     <Box
                       sx={{
@@ -139,6 +143,9 @@ export const EditMarkerForm = observer(({ onClose }: EditMarkerFormProps) => {
                               const newValue = field.value.filter(
                                 (fraction) => fraction !== value
                               );
+                              markersDomain.updateSuggestion({
+                                wasteTypes: newValue as WasteTypes[]
+                              });
                               field.onChange(newValue);
                             }}
                             onMouseDown={(event) => {
