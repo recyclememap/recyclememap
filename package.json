@@ -2,7 +2,8 @@
   "name": "recyclememap",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --open",
+    "dev": "vite",
+    "host": "vite dev --host",
     "preview": "vite preview",
     "test": "jest",
     "type": "tsc --noEmit --skipLibCheck",

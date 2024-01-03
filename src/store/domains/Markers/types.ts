@@ -17,14 +17,14 @@ export enum MarkerProperties {
   address = 'address'
 }
 
-export type MarkerFormFields = {
+export type WasteTypesForm = {
   wasteTypes: WasteTypes[];
 };
 
 export type NewMarker = {
   position: number[];
   address: string;
-} & MarkerFormFields;
+} & WasteTypesForm;
 
 export type Marker = {
   id: string;

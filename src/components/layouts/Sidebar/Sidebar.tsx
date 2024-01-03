@@ -11,12 +11,14 @@ import { sizes } from '@root/theme';
 import { StyledSidebar } from './styled';
 
 export const Sidebar = observer(() => {
-  const { sidebarView, markersView, loader } = useStore();
+  const { sidebarView, markersView, markersDomain, loader } = useStore();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const onClose = () => {
     sidebarView.setIsOpen(false);
+    markersDomain.setSuggestionMarker(null);
+
     isMobile
       ? markersView.setState(null)
       : setTimeout(() => markersView.setState(null), 200);
@@ -48,7 +50,7 @@ export const Sidebar = observer(() => {
   };
 
   return (
-    <Slide direction="right" in={sidebarView.isOpen} mountOnEnter unmountOnExit>
+    <Slide direction="right" in={sidebarView.isOpen} mountOnEnter>
       <StyledSidebar>
         {markersView.state === MarkerState.Active && (
           <CloseIcon

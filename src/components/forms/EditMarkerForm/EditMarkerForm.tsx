@@ -25,7 +25,7 @@ import { WasteTypes } from '@common/constants';
 import { Flex, Icon } from '@root/components';
 import { useStore } from '@root/store';
 import { MarkersLoaders } from '@root/store/domains';
-import { MarkerFormFields } from '@root/store/domains/Markers/types';
+import { WasteTypesForm } from '@root/store/domains/Markers/types';
 import { sizes } from '@root/theme';
 import { noop } from '@utils/helpers';
 
@@ -45,7 +45,7 @@ export const EditMarkerForm = observer(({ onClose }: EditMarkerFormProps) => {
     control,
     handleSubmit,
     formState: { errors, isDirty }
-  } = useForm<MarkerFormFields>({
+  } = useForm<WasteTypesForm>({
     defaultValues: { wasteTypes: markersDomain.suggestionMarker?.wasteTypes },
     mode: 'onChange'
   });
@@ -61,9 +61,7 @@ export const EditMarkerForm = observer(({ onClose }: EditMarkerFormProps) => {
     markersView.setIsNewMarkerActive(true);
   };
 
-  const updateMarker = async ({ wasteTypes }: MarkerFormFields) => {
-    markersDomain.updateSuggestion({ wasteTypes });
-
+  const updateMarker = async () => {
     await markersDomain
       .updateMarker()
       .then(() => onClose())
@@ -118,7 +116,13 @@ export const EditMarkerForm = observer(({ onClose }: EditMarkerFormProps) => {
                   multiple
                   fullWidth
                   value={field.value}
-                  onChange={field.onChange}
+                  onChange={(event) => {
+                    markersDomain.updateSuggestion({
+                      wasteTypes: event.target.value as WasteTypes[]
+                    });
+
+                    field.onChange(event);
+                  }}
                   renderValue={(selected) => (
                     <Box
                       sx={{
@@ -139,6 +143,9 @@ export const EditMarkerForm = observer(({ onClose }: EditMarkerFormProps) => {
                               const newValue = field.value.filter(
                                 (fraction) => fraction !== value
                               );
+                              markersDomain.updateSuggestion({
+                                wasteTypes: newValue as WasteTypes[]
+                              });
                               field.onChange(newValue);
                             }}
                             onMouseDown={(event) => {

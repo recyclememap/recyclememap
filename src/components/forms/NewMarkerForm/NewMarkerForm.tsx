@@ -24,7 +24,7 @@ import { WasteTypes } from '@common/constants';
 import { Flex, Icon } from '@root/components';
 import { useStore } from '@root/store';
 import { MarkersLoaders } from '@root/store/domains';
-import { MarkerFormFields } from '@root/store/domains/Markers/types';
+import { WasteTypesForm } from '@root/store/domains/Markers/types';
 import { sizes } from '@root/theme';
 import { noop } from '@utils/helpers';
 
@@ -36,25 +36,27 @@ const SELECTED_WASTE_TYPES_LIMIT = 3;
 
 export const NewMarkerForm = observer(({ onClose }: NewMarkerFormProps) => {
   const { t } = useTranslation();
-  const { markersView, sidebarView, markersDomain, mapDomain, loader } =
-    useStore();
+  const { markersView, markersDomain, sidebarView, loader } = useStore();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const {
     control,
     handleSubmit,
-    formState: { errors, isDirty }
-  } = useForm<MarkerFormFields>({ mode: 'onChange' });
+    formState: { errors }
+  } = useForm<WasteTypesForm>({
+    defaultValues: { wasteTypes: markersDomain.suggestionMarker?.wasteTypes },
+    mode: 'onChange'
+  });
 
   const editHandler = () => {
     sidebarView.setIsOpen(false);
     markersView.setIsNewMarkerActive(true);
   };
 
-  const addNewMarker = async ({ wasteTypes }: MarkerFormFields) => {
+  const addNewMarker = async () => {
     await markersDomain
-      .addNewMarker({ wasteTypes })
+      .addNewMarker()
       .then(() => onClose())
       .catch(noop);
   };
@@ -68,7 +70,7 @@ export const NewMarkerForm = observer(({ onClose }: NewMarkerFormProps) => {
         <DialogContent sx={{ pb: 0, px: sizes[4].rem }}>
           <Flex sx={{ alignItems: 'center', gap: sizes[8].rem }}>
             {t('common.addressLabel')}
-            {mapDomain.currentAddress}
+            {markersDomain.suggestionMarker?.address}
             {!isMobile && (
               <IconButton
                 onClick={editHandler}
@@ -103,7 +105,13 @@ export const NewMarkerForm = observer(({ onClose }: NewMarkerFormProps) => {
                   multiple
                   fullWidth
                   value={field.value}
-                  onChange={field.onChange}
+                  onChange={(event) => {
+                    markersDomain.updateSuggestion({
+                      wasteTypes: event.target.value as WasteTypes[]
+                    });
+
+                    field.onChange(event);
+                  }}
                   renderValue={(selected) => (
                     <Box
                       sx={{
@@ -124,6 +132,9 @@ export const NewMarkerForm = observer(({ onClose }: NewMarkerFormProps) => {
                               const newValue = field.value.filter(
                                 (fraction) => fraction !== value
                               );
+                              markersDomain.updateSuggestion({
+                                wasteTypes: newValue as WasteTypes[]
+                              });
                               field.onChange(newValue);
                             }}
                             onMouseDown={(event) => {
@@ -157,7 +168,9 @@ export const NewMarkerForm = observer(({ onClose }: NewMarkerFormProps) => {
         </DialogContent>
         <DialogActions>
           <LoadingButton
-            disabled={!!errors.wasteTypes || !isDirty}
+            disabled={
+              !!errors.wasteTypes || !markersDomain.suggestionMarker?.wasteTypes
+            }
             loading={loader.isLoading(MarkersLoaders.AddNewMarker)}
             type="submit"
           >

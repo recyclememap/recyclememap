@@ -1,4 +1,4 @@
-import { LatLng } from 'leaflet';
+import { LatLngTuple } from 'leaflet';
 import { WasteTypes } from '@common/constants';
 
 export const FormElements = {
@@ -20,4 +20,4 @@ export const FormElements = {
 
 export const WastyTypeButteriesTitle = `icons.${WasteTypes.Batteries}.title`;
 
-export const LAT_LNG_MOCK = { lat: 1, lng: 2 } as LatLng;
+export const LAT_LNG_MOCK = [1, 2] as LatLngTuple;

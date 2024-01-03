@@ -2,7 +2,6 @@ import { useMediaQuery, useTheme } from '@mui/material';
 import {
   MarkerLayout,
   MapLayout,
-  MarkerHandler,
   MobileHandler,
   Sidebar,
   MobileSidebar,
@@ -15,11 +14,9 @@ const HomePage = withInit('markersDomain', () => {
 
   return (
     <MobileHandler>
-      <MarkerHandler>
-        {isMobile ? <MobileSidebar /> : <Sidebar />}
-        <MapLayout />
-        <MarkerLayout />
-      </MarkerHandler>
+      {isMobile ? <MobileSidebar /> : <Sidebar />}
+      <MapLayout />
+      <MarkerLayout />
     </MobileHandler>
   );
 });

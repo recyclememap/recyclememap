@@ -10,7 +10,6 @@ export class MarkersView {
   constructor() {
     makeObservable(this, {
       state: observable,
-
       isNewMarkerActive: observable,
       isNewMobileMarkerActive: observable,
       isUnsupportedCoordinates: observable,

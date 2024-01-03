@@ -15,18 +15,20 @@ describe('NewMarkerForm logic', () => {
   beforeEach(() => {
     store = createStore();
     apiMock = (global as any).apiMock;
+
+    store.markersDomain.updateSuggestion({
+      address: FormElements.Address,
+      position: LAT_LNG_MOCK
+    });
   });
 
   it('creates new marker and closes dialog on add button click', async () => {
-    store.mapDomain.setCurrentPosition(LAT_LNG_MOCK);
-    store.mapDomain.setCurrentAddress(FormElements.Address);
-
     const addNewMarkerSpy = jest.spyOn(store.markersDomain, 'addNewMarker');
     const onCloseSpy = jest.fn();
 
     apiMock
       .post('/markers', {
-        position: [LAT_LNG_MOCK.lat, LAT_LNG_MOCK.lng],
+        position: LAT_LNG_MOCK,
         address: FormElements.Address,
         wasteTypes: [WasteTypes.Batteries]
       })
@@ -51,9 +53,6 @@ describe('NewMarkerForm logic', () => {
   });
 
   it('shows the validation error if a waste type is not selected', async () => {
-    store.mapDomain.setCurrentPosition(LAT_LNG_MOCK);
-    store.mapDomain.setCurrentAddress(FormElements.Address);
-
     const onCloseSpy = jest.fn();
 
     renderWithStore(store, <NewMarkerForm onClose={onCloseSpy} />);
@@ -73,8 +72,6 @@ describe('NewMarkerForm logic', () => {
   });
 
   it('starts editing on edit button click', async () => {
-    store.mapDomain.setCurrentPosition(LAT_LNG_MOCK);
-
     renderWithStore(store, <NewMarkerForm onClose={noop} />);
 
     await userEvent.click(screen.getByTitle(FormElements.EditButton));
@@ -84,8 +81,6 @@ describe('NewMarkerForm logic', () => {
   });
 
   it('closes the dialog on cancel button click', async () => {
-    store.mapDomain.setCurrentPosition(LAT_LNG_MOCK);
-
     const onCloseSpy = jest.fn();
 
     renderWithStore(store, <NewMarkerForm onClose={onCloseSpy} />);
@@ -96,15 +91,12 @@ describe('NewMarkerForm logic', () => {
   });
 
   it('shows an error snackbar if adding a new marker is failed', async () => {
-    store.mapDomain.setCurrentPosition(LAT_LNG_MOCK);
-    store.mapDomain.setCurrentAddress(FormElements.Address);
-
     const addNewMarkerSpy = jest.spyOn(store.markersDomain, 'addNewMarker');
     const onCloseSpy = jest.fn();
 
     apiMock
       .post('/markers', {
-        position: [LAT_LNG_MOCK.lat, LAT_LNG_MOCK.lng],
+        position: LAT_LNG_MOCK,
         address: FormElements.Address,
         wasteTypes: [WasteTypes.Batteries]
       })

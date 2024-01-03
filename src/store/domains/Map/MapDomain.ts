@@ -5,9 +5,9 @@ import { RootStore } from '@root/store';
 import { notify } from '@utils/decorators';
 import { mapApi } from './requests';
 
+// TODO: Move current address to suggestion?
 export class MapDomain {
   private rootStore: RootStore;
-  currentPosition: LatLng | null = null;
   currentAddress: string | null = null;
 
   constructor(rootStore: RootStore) {
@@ -15,14 +15,8 @@ export class MapDomain {
 
     makeObservable(this, {
       currentAddress: observable,
-      currentPosition: observable,
-      setCurrentPosition: action,
       setCurrentAddress: action
     });
-  }
-
-  setCurrentPosition(position: LatLng | null): void {
-    this.currentPosition = position;
   }
 
   setCurrentAddress(address: string | null): void {
