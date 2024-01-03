@@ -25,7 +25,7 @@ import { WasteTypes } from '@common/constants';
 import { Flex, Icon } from '@root/components';
 import { useStore } from '@root/store';
 import { MarkersLoaders } from '@root/store/domains';
-import { WasteTypesForm } from '@root/store/domains/Markers/types';
+import { MarkerFormFields } from '@root/store/domains/Markers/types';
 import { sizes } from '@root/theme';
 import { noop } from '@utils/helpers';
 
@@ -45,7 +45,7 @@ export const EditMarkerForm = observer(({ onClose }: EditMarkerFormProps) => {
     control,
     handleSubmit,
     formState: { errors, isDirty }
-  } = useForm<WasteTypesForm>({
+  } = useForm<MarkerFormFields>({
     defaultValues: { wasteTypes: markersDomain.suggestionMarker?.wasteTypes },
     mode: 'onChange'
   });
