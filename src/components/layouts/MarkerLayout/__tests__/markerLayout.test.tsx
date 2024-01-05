@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MarkerState } from '@common/constants';
 import { IRootStore } from '@root/store';
@@ -18,8 +18,9 @@ describe('MarkerLayout logic', () => {
 
     await userEvent.click(screen.getByTitle(LayoutElements.FabTitle));
 
+    await waitFor(() => expect(store.markersView.state).toBe(MarkerState.New));
     expect(store.markersView.isNewMarkerActive).toBe(true);
     expect(store.sidebarView.isOpen).toBe(false);
-    expect(store.markersView.state).toBe(MarkerState.New);
+    expect(store.markersDomain.suggestionMarker).toBeNull();
   });
 });

@@ -27,17 +27,19 @@ export const MarkerLayout = observer(() => {
   useEscape(handleEscape);
 
   const handleFabClick = () => {
-    if (!isMobile) {
-      sidebarView.setIsOpen(false);
-      markersView.setIsNewMarkerActive(true);
+    if (isMobile) {
+      sidebarView.setIsOpen(true);
       markersView.setState(MarkerState.New);
+      markersView.setIsNewMobileMarkerActive(true);
+      markersDomain.updateSuggestion({ wasteTypes: undefined });
 
       return;
     }
 
-    sidebarView.setIsOpen(true);
-    markersView.setState(MarkerState.New);
-    markersView.setIsNewMobileMarkerActive(true);
+    markersDomain.setSuggestionMarker(null);
+    sidebarView.setIsOpen(false);
+    markersView.setIsNewMarkerActive(true);
+    setTimeout(() => markersView.setState(MarkerState.New), 400);
   };
 
   return (
