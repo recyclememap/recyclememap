@@ -11,6 +11,7 @@ import * as mapEnGB from './en-GB/map.json';
 import * as mapDomainEnGB from './en-GB/mapDomain.json';
 import * as markerLayoutEnGB from './en-GB/markerLayout.json';
 import * as markersDomainEnGB from './en-GB/markersDomain.json';
+import * as notFoundPageEnGB from './en-GB/notFoundPage.json';
 import * as activeMarkerRuRU from './ru-Ru/activeMarker.json';
 import * as addMarkerDialogRuRU from './ru-Ru/addMarkerDialog.json';
 import * as commontRuRU from './ru-Ru/common.json';
@@ -21,6 +22,7 @@ import * as mapRuRU from './ru-Ru/map.json';
 import * as mapDomainRuRU from './ru-Ru/mapDomain.json';
 import * as markerLayoutRuRU from './ru-Ru/markerLayout.json';
 import * as markersDomainRuRU from './ru-Ru/markersDomain.json';
+import * as notFoundPageRuRU from './ru-Ru/notFoundPage.json';
 
 const DEFAULT_LANGUAGE = 'en';
 
@@ -39,7 +41,8 @@ const resources = {
       common: commontEnGB,
       map: mapEnGB,
       activeMarker: activeMarkerEnGB,
-      homePage: homePageEnGB
+      homePage: homePageEnGB,
+      notFoundPage: notFoundPageEnGB
     }
   },
   ru: {
@@ -53,7 +56,8 @@ const resources = {
       common: commontRuRU,
       map: mapRuRU,
       activeMarker: activeMarkerRuRU,
-      homePage: homePageRuRU
+      homePage: homePageRuRU,
+      notFoundPage: notFoundPageRuRU
     }
   }
 };

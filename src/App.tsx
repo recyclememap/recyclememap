@@ -12,6 +12,7 @@ interface IApp {
 }
 
 const HomePage = lazy(() => import('@views/HomePage/HomePage'));
+const NotFoundPage = lazy(() => import('@views/NotFoundPage/NotFoundPage'));
 
 function App({ store }: IApp) {
   return (
@@ -24,6 +25,7 @@ function App({ store }: IApp) {
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<HomePage />} />
+                <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </BrowserRouter>
           </Suspense>

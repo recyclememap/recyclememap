@@ -1,6 +1,7 @@
 import { RenderResult, render } from '@testing-library/react';
 import { ReactElement } from 'react';
 import { MapContainer } from 'react-leaflet';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ASHDOD_COORDINATES, INITIAL_MAP_ZOOM } from '@common/constants';
 import { Snackbar } from '@root/components';
 import { StoreContext, IRootStore, RootStore } from '@root/store';
@@ -14,10 +15,19 @@ export const renderWithStore = (
   component: ReactElement,
   showSnackbar = true
 ): RenderResult => {
-  return render(
-    <StoreContext.Provider value={store}>
+  const componentToRender = (
+    <>
       {showSnackbar && <Snackbar />}
       {component}
+    </>
+  );
+  return render(
+    <StoreContext.Provider value={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={componentToRender} />
+        </Routes>
+      </BrowserRouter>
     </StoreContext.Provider>
   );
 };
