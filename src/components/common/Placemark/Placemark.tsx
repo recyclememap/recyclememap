@@ -19,7 +19,9 @@ export const Placemark = observer(({ marker }: PlacemarkProps) => {
 
   const icon = Leaflet.divIcon({
     className: 'marker',
-    iconSize: [50, 50],
+    iconSize: [40, 40],
+    iconAnchor: [20, 47],
+    popupAnchor: [0, -17],
     html: `
     <div data-testid=placemark-${address}>
       ${renderToString(<Marker icons={wasteTypes} />)}
