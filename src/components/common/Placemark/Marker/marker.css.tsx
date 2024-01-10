@@ -37,6 +37,6 @@ export const ring = style({
   },
 
   ':hover': {
-    animation: `${bounce} 0.2s`
+    animation: `${bounce} 0.2s ease-in-out`
   }
 });
