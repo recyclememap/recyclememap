@@ -1,6 +1,11 @@
-import { style, createVar } from '@vanilla-extract/css';
+import { style, createVar, keyframes } from '@vanilla-extract/css';
 
 export const backgroundVar = createVar();
+
+const bounce = keyframes({
+  '0%': { transform: 'translate3d(0,0,0)' },
+  '100%': { transform: 'translate3d(0,-5px,0)' }
+});
 
 export const ring = style({
   position: 'relative',
@@ -29,5 +34,9 @@ export const ring = style({
     borderTop: '8px solid white',
     borderLeft: '5px solid transparent',
     borderRight: '5px solid transparent'
+  },
+
+  ':hover': {
+    animation: `${bounce} 0.2s`
   }
 });
