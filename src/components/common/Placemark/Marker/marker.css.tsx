@@ -4,7 +4,8 @@ export const backgroundVar = createVar();
 
 const bounce = keyframes({
   '0%': { transform: 'translate3d(0,0,0)' },
-  '100%': { transform: 'translate3d(0,-5px,0)' }
+  '50%': { transform: 'translate3d(0,-5px,0)' },
+  '100%': { transform: 'translate3d(0,0,0)' }
 });
 
 export const ring = style({
@@ -37,6 +38,6 @@ export const ring = style({
   },
 
   ':hover': {
-    animation: `${bounce} 0.2s ease-in-out`
+    animation: `${bounce} 0.4s`
   }
 });
