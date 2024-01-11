@@ -4,8 +4,8 @@ import { flatIcons } from './FlatIcons';
 import type { flatIconsKeys } from './FlatIcons';
 
 const sizes = {
-  m: { size: '45px', padding: '15px' },
-  s: { size: '40px', padding: '8px' }
+  m: { size: '40px', padding: '8px' },
+  s: { size: '32px', padding: '6px' }
 };
 
 type IconProps = {

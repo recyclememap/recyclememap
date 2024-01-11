@@ -21,7 +21,7 @@ export const Placemark = observer(({ marker }: PlacemarkProps) => {
     className: 'marker',
     iconSize: [40, 40],
     iconAnchor: [20, 47],
-    popupAnchor: [0, -17],
+    popupAnchor: [0, -19],
     html: `
     <div data-testid=placemark-${address}>
       ${renderToString(<Marker icons={wasteTypes} />)}
