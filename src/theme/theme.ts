@@ -53,6 +53,11 @@ export const theme = createTheme({
       textAlign: 'center',
       padding: `${sizes[8].rem} 0`
     },
+    h5: {
+      margin: 0,
+      fontWeight: 500,
+      fontSize: sizes[16].rem
+    },
     caption: {
       margin: `${sizes[8].rem} 0`,
       color: 'rgba(0, 0, 0, 0.6)',
