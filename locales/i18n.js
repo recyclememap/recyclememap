@@ -5,6 +5,7 @@ import * as activeMarkerEnGB from './en-GB/activeMarker.json';
 import * as addMarkerDialogEnGB from './en-GB/addMarkerDialog.json';
 import * as commontEnGB from './en-GB/common.json';
 import * as editMarkerDialogEnGB from './en-GB/editMarkerDialog.json';
+import * as filterEnGB from './en-GB/filter.json';
 import * as homePageEnGB from './en-GB/homePage.json';
 import * as iconsEnGB from './en-GB/icons.json';
 import * as mapEnGB from './en-GB/map.json';
@@ -16,6 +17,7 @@ import * as activeMarkerRuRU from './ru-Ru/activeMarker.json';
 import * as addMarkerDialogRuRU from './ru-Ru/addMarkerDialog.json';
 import * as commontRuRU from './ru-Ru/common.json';
 import * as editMarkerDialogRuRU from './ru-Ru/editMarkerDialog.json';
+import * as filterRuRU from './ru-Ru/filter.json';
 import * as homePageRuRU from './ru-Ru/homePage.json';
 import * as iconsRuRU from './ru-Ru/icons.json';
 import * as mapRuRU from './ru-Ru/map.json';
@@ -42,7 +44,8 @@ const resources = {
       map: mapEnGB,
       activeMarker: activeMarkerEnGB,
       homePage: homePageEnGB,
-      notFoundPage: notFoundPageEnGB
+      notFoundPage: notFoundPageEnGB,
+      filter: filterEnGB
     }
   },
   ru: {
@@ -57,7 +60,8 @@ const resources = {
       map: mapRuRU,
       activeMarker: activeMarkerRuRU,
       homePage: homePageRuRU,
-      notFoundPage: notFoundPageRuRU
+      notFoundPage: notFoundPageRuRU,
+      filter: filterRuRU
     }
   }
 };

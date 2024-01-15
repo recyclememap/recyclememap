@@ -7,7 +7,7 @@ export const StyledSidebar = styled(Flex)(({ theme }) => ({
   overflowY: 'auto',
   alignItems: 'center',
   flexDirection: 'column',
-  top: sizes[16].px,
+  top: '120px',
   left: sizes[16].px,
   width: '450px',
   borderRadius: sizes[16].px,
