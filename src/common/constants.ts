@@ -16,13 +16,13 @@ export const StatusCodes = {
 };
 
 export enum WasteTypes {
-  Packing = 'packing',
   Plastic = 'plastic',
-  Batteries = 'batteries',
-  Carton = 'carton',
-  Clothes = 'clothes',
   Paper = 'paper',
-  Glass = 'glass'
+  Glass = 'glass',
+  Carton = 'carton',
+  Packing = 'packing',
+  Batteries = 'batteries',
+  Clothes = 'clothes'
 }
 
 export const AshdodCoordinates = {

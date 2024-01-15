@@ -1,4 +1,5 @@
 import { observable, makeObservable, action } from 'mobx';
+import { flatIconsKeys } from '@components/common';
 import { RootStore } from '@root/store';
 import { loader, notify } from '@utils/decorators';
 import { noop } from '@utils/helpers';
@@ -44,30 +45,47 @@ export class MarkersDomain {
     this.activeMarker = activeMarker;
   }
 
+  async getMarkers(
+    selectedFilter?: Set<flatIconsKeys>,
+    requestController?: AbortController | null
+  ): Promise<void> {
+    const queryParams = selectedFilter
+      ? new URLSearchParams({
+          wasteTypes: [...selectedFilter].join(',')
+        })
+      : '';
+
+    const markers = await markersApi.getMarkers({
+      params: queryParams,
+      signal: requestController?.signal
+    });
+
+    this.setMarkers(markers);
+  }
+
   @notify({
     message: 'common.errorTitle',
     details: 'markersDomain.getMarkersErrorMessage'
   })
   @loader(MarkersLoaders.GetMarkers)
-  async getMarkers(): Promise<void> {
-    let markers: MarkersList;
-
+  async getMarkersWithRetry(
+    selectedFilter?: Set<flatIconsKeys>,
+    requestController?: AbortController
+  ): Promise<void> {
     // Temporary solution since server is spinning down without receiving inbound traffic
     try {
-      markers = await markersApi.getMarkers();
+      await this.getMarkers();
     } catch (e) {
       if (this.retryCount > 0) {
         this.retryCount--;
 
-        await this.getMarkers();
+        await this.getMarkers(selectedFilter);
 
         return;
       }
 
       throw e;
     }
-
-    this.setMarkers(markers);
   }
 
   @notify(
