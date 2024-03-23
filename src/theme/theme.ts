@@ -13,6 +13,10 @@ export const sizes = {
     px: '8px',
     rem: '0.5rem'
   },
+  14: {
+    px: '14px',
+    rem: '0.8rem'
+  },
   16: {
     px: '16px',
     rem: '1rem'
@@ -165,6 +169,13 @@ export const theme = createTheme({
         '*::-webkit-scrollbar-thumb': {
           backgroundColor: '#B0B8C4',
           borderRadius: '100px'
+        },
+
+        '.maplibregl-popup-content': {
+          borderRadius: '12px'
+        },
+        '.maplibregl-canvas': {
+          outline: 'none'
         }
       }
     }

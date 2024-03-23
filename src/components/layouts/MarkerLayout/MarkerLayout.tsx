@@ -8,7 +8,7 @@ import { sizes } from '@root/theme';
 import { useEscape } from '@utils/hooks';
 import { MobileMarker } from './MobileMarker/MobileMarker';
 
-const FAB_DEFAULT_POSITION = 100;
+const FAB_DEFAULT_POSITION = 180;
 
 export const MarkerLayout = observer(() => {
   const { t } = useTranslation();
@@ -52,7 +52,8 @@ export const MarkerLayout = observer(() => {
           position: 'absolute',
           bottom: `${
             FAB_DEFAULT_POSITION +
-            (sidebarView.isOpen && isMobile ? MOBILE_SIDEBAR_HEIGHT : 0)
+            (sidebarView.isOpen && isMobile ? MOBILE_SIDEBAR_HEIGHT - 40 : 0) +
+            (isMobile ? 15 : 0)
           }px`,
           right: sizes[16].rem,
           mb: sizes[16].rem,

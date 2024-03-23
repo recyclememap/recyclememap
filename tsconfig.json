@@ -4,7 +4,7 @@
     "experimentalDecorators": true,
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    // Sets to true for tests to translate non-ts ES6 modules in node_module by ts-jests 
+    // Sets to true for tests to translate non-ts ES6 modules in node_module by ts-jest 
     "allowJs": true,
     "skipLibCheck": false,
     "esModuleInterop": true,

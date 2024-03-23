@@ -1,8 +1,8 @@
-import { LatLngTuple } from 'leaflet';
+import { LngLatLike } from '@maptiler/sdk';
 
-export const ASHDOD_COORDINATES = [31.792, 34.645] as LatLngTuple;
+export const ASHDOD_COORDINATES = [34.643557, 31.795] as LngLatLike;
 
-export const INITIAL_MAP_ZOOM = 14; // Scale 1:14
+export const INITIAL_MAP_ZOOM = 13.4; // Scale 1:17
 export const MAX_MAP_ZOOM = 19; // Scale 1:19
 
 export const MOBILE_SIDEBAR_HEIGHT = 280;

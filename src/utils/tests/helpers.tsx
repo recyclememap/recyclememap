@@ -1,8 +1,6 @@
 import { RenderResult, render } from '@testing-library/react';
 import { ReactElement } from 'react';
-import { MapContainer } from 'react-leaflet';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { ASHDOD_COORDINATES, INITIAL_MAP_ZOOM } from '@common/constants';
 import { Snackbar } from '@root/components';
 import { StoreContext, IRootStore, RootStore } from '@root/store';
 
@@ -28,23 +26,6 @@ export const renderWithStore = (
           <Route path="/" element={componentToRender} />
         </Routes>
       </BrowserRouter>
-    </StoreContext.Provider>
-  );
-};
-
-export const renderWithLeaflet = (
-  store: IRootStore,
-  component: ReactElement
-): RenderResult => {
-  return render(
-    <StoreContext.Provider value={store}>
-      <MapContainer
-        center={ASHDOD_COORDINATES}
-        zoom={INITIAL_MAP_ZOOM}
-        zoomControl={false}
-      >
-        {component}
-      </MapContainer>
     </StoreContext.Provider>
   );
 };

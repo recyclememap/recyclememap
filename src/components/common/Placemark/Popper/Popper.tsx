@@ -8,8 +8,6 @@ type PopperProps = {
   address: string;
 };
 
-const POPPER_ICONS_LENGTH = 4;
-
 export const Popper = ({ address, icons }: PopperProps) => {
   return (
     <Flex
@@ -20,7 +18,16 @@ export const Popper = ({ address, icons }: PopperProps) => {
         gap: sizes[8].rem
       }}
     >
-      <Typography variant="h5">{address}</Typography>
+      <Typography
+        variant="h5"
+        sx={{
+          margin: 0,
+          fontWeight: 500,
+          fontSize: sizes[16].rem
+        }}
+      >
+        {address}
+      </Typography>
       <Flex
         sx={{
           justifyContent: 'center',

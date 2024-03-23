@@ -9,6 +9,7 @@ const bounce = keyframes({
 });
 
 export const ring = style({
+  cursor: 'pointer',
   position: 'relative',
   width: '40px',
   height: '40px',
