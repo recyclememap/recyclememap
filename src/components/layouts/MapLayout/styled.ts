@@ -1,4 +1,4 @@
-import { styled } from '@mui/material/styles';
+import { css, styled } from '@mui/material/styles';
 import { MOBILE_SIDEBAR_HEIGHT } from '@common/constants';
 import { sizes } from '@root/theme';
 
@@ -19,3 +19,40 @@ export const StyledMap = styled('div')(
     }
   })
 );
+
+export const mapStyleOverride = css`
+  .maplibregl-popup-content {
+    border-radius: 12px;
+  }
+
+  .maplibregl-canvas {
+    outline: none;
+  }
+
+  .maplibregl-ctrl-top-left .maplibregl-ctrl {
+    margin-left: 16px;
+    margin-top: 16px;
+    border-radius: 18px;
+
+    form {
+      width: 450px !important;
+      max-width: 450px !important;
+      border-radius: 18px;
+    }
+
+    .input-group {
+      border-radius: 18px;
+    }
+
+    input {
+      min-height: 32px;
+    }
+
+    @media (max-width: 900px) {
+      form {
+        width: calc(100vw - 32px) !important;
+        max-width: calc(100vw - 32px) !important;
+      }
+    }
+  }
+`;

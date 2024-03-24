@@ -169,13 +169,6 @@ export const theme = createTheme({
         '*::-webkit-scrollbar-thumb': {
           backgroundColor: '#B0B8C4',
           borderRadius: '100px'
-        },
-
-        '.maplibregl-popup-content': {
-          borderRadius: '12px'
-        },
-        '.maplibregl-canvas': {
-          outline: 'none'
         }
       }
     }
