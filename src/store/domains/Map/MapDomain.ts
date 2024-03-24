@@ -1,4 +1,4 @@
-import { LatLng } from 'leaflet';
+import { LngLat } from '@maptiler/sdk';
 import { observable, makeObservable, action } from 'mobx';
 import { AshdodCoordinates } from '@common/constants';
 import { RootStore } from '@root/store';
@@ -49,7 +49,7 @@ export class MapDomain {
     this.setCurrentAddress(displayAddress);
   }
 
-  checkCurrentPosition({ lat, lng }: LatLng): boolean {
+  checkCurrentPosition({ lat, lng }: LngLat): boolean {
     return !(
       lat < AshdodCoordinates.LatMin ||
       lat > AshdodCoordinates.LatMax ||

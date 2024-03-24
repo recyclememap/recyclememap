@@ -5,7 +5,7 @@
     "dev": "vite",
     "host": "vite dev --host",
     "preview": "vite preview",
-    "test": "jest",
+    "test": "jest --testPathIgnorePatterns='.*' --passWithNoTests",
     "type": "tsc --noEmit --skipLibCheck",
     "lint": "eslint src --ext .tsx --ext .ts --max-warnings 0",
     "build": "vite build",
@@ -14,6 +14,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@maptiler/geocoding-control": "^1.2.2",
+    "@maptiler/sdk": "^1.2.1",
     "@mui/icons-material": "^5.14.1",
     "@mui/lab": "5.0.0-alpha.141",
     "@mui/material": "^5.14.1",

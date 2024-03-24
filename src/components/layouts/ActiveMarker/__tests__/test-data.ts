@@ -1,10 +1,9 @@
-import { LatLngTuple } from 'leaflet';
 import { WasteTypes } from '@common/constants';
 
 export const ACTIVE_MARKER = {
   id: 'testId',
   date: '2023-08-15T21:37:05.406Z',
-  position: [321, 444] as LatLngTuple,
+  position: [321, 444],
   wasteTypes: [WasteTypes.Plastic],
   address: 'test'
 };

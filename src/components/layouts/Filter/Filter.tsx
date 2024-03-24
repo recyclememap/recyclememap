@@ -35,8 +35,9 @@ export const Filter = () => {
             aria-label="filter"
             sx={{
               position: 'absolute',
-              top: sizes[16].rem,
-              right: sizes[16].rem
+              top: sizes[64].rem,
+              right: sizes[16].rem,
+              zIndex: 1
             }}
             title={t('filter.fabTitle')}
             onClick={() => setIsMobileFilterOpen(!isMobileFilterOpen)}

@@ -1,4 +1,3 @@
-import { LatLngTuple } from 'leaflet';
 import { MakePartial } from '@common/types';
 
 export enum WasteTypes {
@@ -28,7 +27,7 @@ export type NewMarker = {
 
 export type Marker = {
   id: string;
-  position: LatLngTuple;
+  position: number[];
   wasteTypes: WasteTypes[];
   address: string;
   date: string;
