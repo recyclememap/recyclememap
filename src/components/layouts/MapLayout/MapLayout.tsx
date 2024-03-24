@@ -3,7 +3,7 @@ import { BBox } from '@maptiler/geocoding-control/types';
 import { config as MapTilerConfig, Map } from '@maptiler/sdk';
 import { GlobalStyles, useMediaQuery, useTheme } from '@mui/material';
 import { observer } from 'mobx-react-lite';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   ASHDOD_BOUNDS,
@@ -38,6 +38,7 @@ export const MapLayout = observer(() => {
 
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<Map | null>(null);
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
 
   MapTilerConfig.apiKey = MAPTILER_API_KEY;
 
@@ -53,6 +54,8 @@ export const MapLayout = observer(() => {
         geolocateControl: 'bottom-right',
         maxBounds: ASHDOD_BOUNDS
       });
+
+      map.current.on('load', () => setIsMapLoaded(true));
 
       map.current.on('click', async (event) => {
         if (event.originalEvent.target !== map.current?.getCanvas()) {
@@ -122,7 +125,7 @@ export const MapLayout = observer(() => {
         className="map"
         isSidebarOpen={sidebarView.isOpen && isMobile}
       />
-      {map.current && (
+      {isMapLoaded && map.current && (
         <>
           {markersDomain.markers.length > 0 &&
             markersDomain.markers.map((marker, idx) => (
