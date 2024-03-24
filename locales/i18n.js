@@ -8,8 +8,8 @@ import * as editMarkerDialogEnGB from './en-GB/editMarkerDialog.json';
 import * as filterEnGB from './en-GB/filter.json';
 import * as homePageEnGB from './en-GB/homePage.json';
 import * as iconsEnGB from './en-GB/icons.json';
-import * as mapEnGB from './en-GB/map.json';
 import * as mapDomainEnGB from './en-GB/mapDomain.json';
+import * as mapLayoutEnGB from './en-GB/mapLayout.json';
 import * as markerLayoutEnGB from './en-GB/markerLayout.json';
 import * as markersDomainEnGB from './en-GB/markersDomain.json';
 import * as notFoundPageEnGB from './en-GB/notFoundPage.json';
@@ -20,8 +20,8 @@ import * as editMarkerDialogRuRU from './ru-Ru/editMarkerDialog.json';
 import * as filterRuRU from './ru-Ru/filter.json';
 import * as homePageRuRU from './ru-Ru/homePage.json';
 import * as iconsRuRU from './ru-Ru/icons.json';
-import * as mapRuRU from './ru-Ru/map.json';
 import * as mapDomainRuRU from './ru-Ru/mapDomain.json';
+import * as mapLayoutRuRU from './ru-Ru/mapLayout.json';
 import * as markerLayoutRuRU from './ru-Ru/markerLayout.json';
 import * as markersDomainRuRU from './ru-Ru/markersDomain.json';
 import * as notFoundPageRuRU from './ru-Ru/notFoundPage.json';
@@ -41,7 +41,7 @@ const resources = {
       mapDomain: mapDomainEnGB,
       markersDomain: markersDomainEnGB,
       common: commontEnGB,
-      map: mapEnGB,
+      mapLayout: mapLayoutEnGB,
       activeMarker: activeMarkerEnGB,
       homePage: homePageEnGB,
       notFoundPage: notFoundPageEnGB,
@@ -57,7 +57,7 @@ const resources = {
       mapDomain: mapDomainRuRU,
       markersDomain: markersDomainRuRU,
       common: commontRuRU,
-      map: mapRuRU,
+      mapLayout: mapLayoutRuRU,
       activeMarker: activeMarkerRuRU,
       homePage: homePageRuRU,
       notFoundPage: notFoundPageRuRU,

@@ -1,9 +1,16 @@
+import { GeocodingControl } from '@maptiler/geocoding-control/maptilersdk';
+import { BBox } from '@maptiler/geocoding-control/types';
 import { config as MapTilerConfig, Map } from '@maptiler/sdk';
-import { useMediaQuery, useTheme } from '@mui/material';
+import { GlobalStyles, useMediaQuery, useTheme } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ASHDOD_COORDINATES, INITIAL_MAP_ZOOM } from '@common/constants';
+import {
+  ASHDOD_BOUNDS,
+  ASHDOD_COORDINATES,
+  INITIAL_MAP_ZOOM,
+  SEARCH_COUNTRY_NAME
+} from '@common/constants';
 import { MAPTILER_API_KEY } from '@common/env';
 import AddLocationIcon from '@components/common/Icon/assets/addLocation.svg';
 import { Placemark } from '@root/components';
@@ -11,8 +18,9 @@ import { useStore } from '@root/store';
 import { MapLoaders } from '@root/store/domains';
 import { NotificationType } from '@root/store/domains/Notification/types';
 import { MobileCoordinatesController } from './controllers/MobileCoordinatesController';
-import { StyledMap } from './styled';
+import { StyledMap, mapStyleOverride } from './styled';
 import '@maptiler/sdk/dist/maptiler-sdk.css';
+import '@maptiler/geocoding-control/style.css';
 
 export const MapLayout = observer(() => {
   const {
@@ -42,7 +50,8 @@ export const MapLayout = observer(() => {
         zoom: INITIAL_MAP_ZOOM,
         minZoom: 13,
         navigationControl: 'bottom-right',
-        geolocateControl: 'bottom-right'
+        geolocateControl: 'bottom-right',
+        maxBounds: ASHDOD_BOUNDS
       });
 
       map.current.on('click', async (event) => {
@@ -57,8 +66,8 @@ export const MapLayout = observer(() => {
 
           if (!isCorrectPosition) {
             notification.setCurrentNotification({
-              message: t('map.invalidCoordinatesErrorMessage'),
-              details: t('map.invalidCoordinatesErrorDetails'),
+              message: t('mapLayout.invalidCoordinatesErrorMessage'),
+              details: t('mapLayout.invalidCoordinatesErrorDetails'),
               type: NotificationType.Error
             });
 
@@ -84,6 +93,16 @@ export const MapLayout = observer(() => {
           loader.deleteLoader(MapLoaders.GetAddress);
         }
       });
+
+      const gc = new GeocodingControl({
+        bbox: ASHDOD_BOUNDS as BBox,
+        country: SEARCH_COUNTRY_NAME,
+        errorMessage: t('mapLayout.searchError'),
+        placeholder: t('mapLayout.searchPlaceholder'),
+        noResultsMessage: t('mapLayout.noResultError')
+      });
+
+      map.current.addControl(gc, 'top-left');
     }
     // eslint-disable-next-line
   }, []);
@@ -114,6 +133,7 @@ export const MapLayout = observer(() => {
           )}
         </>
       )}
+      <GlobalStyles styles={mapStyleOverride} />
     </>
   );
 });
