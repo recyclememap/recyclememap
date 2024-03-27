@@ -3,6 +3,7 @@ import {
   Popup as MaptilerPopup,
   Marker as MaptilerMarker
 } from '@maptiler/sdk';
+import { useMediaQuery, useTheme } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -22,6 +23,9 @@ export const Placemark = observer(({ marker, map }: PlacemarkProps) => {
   const { markersDomain, markersView, sidebarView } = useStore();
   const { address, wasteTypes, position } = marker;
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   useEffect(() => {
     if (!map) return;
 
@@ -30,13 +34,15 @@ export const Placemark = observer(({ marker, map }: PlacemarkProps) => {
       <Popper address={address} icons={wasteTypes} />
     );
 
-    const popup = new MaptilerPopup({
-      closeButton: false,
-      closeOnClick: false,
-      offset: [0, -48],
-      maxWidth: '260px',
-      anchor: 'bottom'
-    }).setDOMContent(popupWrapper);
+    const popup = isMobile
+      ? null
+      : new MaptilerPopup({
+          closeButton: false,
+          closeOnClick: false,
+          offset: [0, -48],
+          maxWidth: '260px',
+          anchor: 'bottom'
+        }).setDOMContent(popupWrapper);
 
     const markerWrapper = document.createElement('div');
     markerWrapper.innerHTML = renderToString(<Marker icons={wasteTypes} />);
@@ -50,8 +56,8 @@ export const Placemark = observer(({ marker, map }: PlacemarkProps) => {
       .setPopup(popup)
       .addTo(map);
 
-    const markerHoverHandler = () => popup.addTo(map);
-    const markerLeaveHandler = () => popup.remove();
+    const markerHoverHandler = () => popup?.addTo(map);
+    const markerLeaveHandler = () => popup?.remove();
     const markerClickHandler = () => {
       markersDomain.setActiveMarker(marker);
       markersView.setState(MarkerState.Active);
@@ -78,7 +84,8 @@ export const Placemark = observer(({ marker, map }: PlacemarkProps) => {
     markersView,
     position,
     sidebarView,
-    wasteTypes
+    wasteTypes,
+    isMobile
   ]);
 
   return null;
