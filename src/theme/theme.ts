@@ -147,6 +147,9 @@ export const theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
+        html: {
+          '-webkit-tap-highlight-color': 'transparent'
+        },
         body: {
           overflow: 'hidden',
           backgroundColor: '#F3F6F9',
